@@ -1,0 +1,217 @@
+<{php}>
+if( ! empty( $_SESSION['redirect_message'] ) ) {
+$this->_tpl_vars['site_msg'] = $_SESSION['redirect_message'];
+unset( $_SESSION['redirect_message'] ) ;
+}
+<{/php}>
+
+<!-- define current_page, we will filter what to show in the left menu-bar based on this -->
+<{assign var=current_page value=`$smarty.server.HTTP_HOST``$smarty.server.REQUEST_URI`}>
+<!DOCTYPE html>
+<html lang="<{$icms_langcode}>">
+<head>
+	<!-- Center block custom positioning -->
+	<{* Center blocks display order
+	valid values are:  lrc (left right / center) lcr (left center right) clr (center / left right)
+	*}>
+	<{assign var=theme_top_order value=lrc}>
+	<{assign var=theme_bottom_order value=lcr}>
+
+	<!-- Theme name -->
+	<{assign var=theme_name value=$xoTheme->folderName}>
+<meta charset="<{$icms_charset}>" >
+<title><{$smarty.const._IMPRESSCMS_ADMIN}> <{$icms_sitename}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="robots" content="<{$icms_meta_robots}>" />
+<meta name="keywords" content="<{$icms_meta_keywords}>" />
+<meta name="description" content="<{$icms_meta_description}>" />
+<meta name="rating" content="<{$icms_meta_rating}>" />
+<meta name="author" content="<{$icms_meta_author}>" />
+<meta name="copyright" content="<{$icms_meta_copyright}>" />
+<meta name="generator" content="ImpressCMS" />
+
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/ico" href="<{xoImgUrl icons/favicon.ico}>" />
+<link rel="icon" type="image/png" href="<{xoImgUrl icons/icon.png}>" />
+
+<!-- Module Header -->
+<{$icms_module_header}>
+
+<!-- Bulma CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+</head>
+<body id="<{$icms_dirname}>">
+<{$current_page}>
+<div class="wrapper"><nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<{if $adm_left_logo == ''}>&nbsp;<{else}>
+		<{if  $adm_left_logo_url != ''}>
+		<a class="navbar-item" href="<{$adm_left_logo_url}>" title="<{if $adm_left_logo_alt != ''}><{$adm_left_logo_alt}><{else}>ImpressCMS<{/if}>">
+			<{/if}>
+			<img width="112" height="28" src="<{$icms_url}><{$adm_left_logo}>" alt="<{if $adm_left_logo_alt != ''}><{$adm_left_logo_alt}><{else}>ImpressCMS<{/if}>"/>
+			<{if  $adm_left_logo_url != ''}>
+		</a>
+		<{/if}>
+		<{/if}>
+
+		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+
+	<div id="navbarTop" class="navbar-menu">
+		<div class="navbar-start">
+			<{foreach item=item from=$navitems}>
+			<a class="navbar-item" href="<{$item.link}>">
+				<{$item.text}>
+			</a>
+			<{/foreach}>
+
+		</div>
+
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="buttons">
+					<a class="button is-primary">
+						<strong>Sign up</strong>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</nav>
+<div class="columns">
+	<div class="column is-one-fifth">
+<section class="section">
+<aside class="menu">
+	<{foreach item=item from=$navitems}>
+	<{if ($systemadm || $item.id != 'opsystem') && ($item.id != 'news' || $show_impresscms_menu)}>
+	<{if $modulesadm || $item.id != 'modules'}>
+	<p class="menu-label"><{$item.text}></p>
+		<{foreach item=sub from=$item.menu}>
+	<ul class="menu-list">
+
+	<{if $item.id == 'cphome'}>
+			<li><a href="<{if $sub.absolute==1}><{$sub.link}><{else}><{$icms_url}>/modules/<{$sub.dir}>/<{$sub.link}><{/if}>"><{$sub.title}></a></li>
+			<{elseif $item.id == 'opsystem'}>
+			<li><a href="<{if $sub.absolute==1}><{$sub.link}><{else}><{$icms_url}>/modules/<{$sub.dir}>/<{$sub.link}><{/if}>"><{$sub.title}></a>
+				<{if $sub.hassubs}>
+				<ul>
+					<{foreach item=subitem from=$sub.subs}>
+					<li><a href="<{$subitem.link}>"><{$subitem.title}></a>
+						<{if $subitem.hassubs}>
+						<ul>
+							<{foreach item=subsubitem from=$subitem.subs}>
+							<li><a href="<{$subsubitem.link}>"><{$subsubitem.title}></a></li>
+							<{/foreach}>
+						</ul>
+						<{/if}>
+					</li>
+					<{/foreach}>
+				</ul>
+				<{/if}>
+			</li>
+			<{elseif $item.id == 'modules'}>
+			<li><a href="<{if $sub.absolute==1}><{$sub.link}><{else}><{$icms_url}>/modules/<{$sub.dir}>/<{$sub.link}><{/if}>"><{$sub.title}></a>
+				<{if $sub.hassubs}>
+				<ul>
+					<{foreach item=subitem from=$sub.subs}>
+					<li><a href="<{$subitem.link}>"><{$subitem.title}></a></li>
+					<{/foreach}>
+				</ul>
+				<{/if}>
+			</li>
+			<{elseif $item.id == 'news' && $show_impresscms_menu}>
+			<li><a rel="external" href="<{if $sub.absolute==1}><{$sub.link}><{else}><{$icms_url}>/modules/<{$sub.dir}>/<{$sub.link}><{/if}>"><{$sub.title}></a></li>
+			<{/if}>
+			<{/foreach}>
+
+		</ul>
+	</li>
+	<{/if}>
+	<{/if}>
+	<{/foreach}>
+</aside>
+
+
+</section>
+	</div>
+	<div class="column">
+<section class="section">
+	<div class="container">
+		<!-- Left column -->
+		<{if $icms_rtl}>
+		<{if $xoBlocks.canvas_right_admin}>
+		<{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_right_admin
+		zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'
+		}>
+		<{/if}>
+		<{else}>
+		<{if $xoBlocks.canvas_left_admin}>
+		<{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_left_admin
+		zoneClass='xo-canvas-column' zoneId='xo-canvas-leftcolumn'
+		}>
+		<{/if}>
+		<{/if}>
+		<!-- Center column / page -->
+		<!-- Top blocks -->
+		<{if $xoBlocks.page_topleft_admin or $xoBlocks.page_topcenter_admin or $xoBlocks.page_topright_admin}>
+		<div class="xo-blockszone xo-<{$theme_top_order}>pageblocks" id="xo-page-topblocks">
+			<{includeq file="$theme_name/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:0:1}>
+			<{includeq file="$theme_name/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:1:1}>
+			<{includeq file="$theme_name/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:2:1}>
+		</div>
+		<{/if}>
+	</div>
+</section>
+
+<{if $icms_contents}>
+<section>
+	<div class="container">
+		<div id="xo-content"><{$icms_contents}></div>
+	</div>
+</section>
+<{/if}>
+
+			<!-- Bottom blocks -->
+			<{if $xoBlocks.page_bottomleft_admin or $xoBlocks.page_bottomcenter_admin or $xoBlocks.page_bottomright_admin}>
+			<div class="xo-blockszone xo-<{$theme_bottom_order}>pageblocks" id="xo-page-bottomblocks">
+				<{includeq file="$theme_name/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:0:1}>
+				<{includeq file="$theme_name/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:1:1}>
+				<{includeq file="$theme_name/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:2:1}>
+			</div>
+			<{/if}>
+
+		<!-- Right column -->
+		<{if $icms_rtl}>
+		<{if $xoBlocks.canvas_left_admin}>
+		<{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_left_admin
+		zoneClass='xo-canvas-column' zoneId='xo-canvas-leftcolumn'
+		}>
+		<{/if}>
+		<{else}>
+		<{if $xoBlocks.canvas_right_admin}>
+		<{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_right_admin
+		zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'
+		}>
+		<{/if}>
+		<{/if}>
+</div>
+	</div>
+</div>
+
+<footer class="footer">
+	<div class="content has-text-centered">
+		<p>
+			&copy; 2019 David Janssens.
+		</p>
+	</div>
+</footer>
+</div>
+</body>
+</html>

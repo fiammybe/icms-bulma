@@ -1,0 +1,17 @@
+
+<{if $blocks}>
+	<div class="xo-blockszone x2-secondary<{if $zoneClass}> <{$zoneClass}><{/if}>"<{if $zoneId}> id="<{$zoneId}>"<{/if}>>
+	<{foreach from=$blocks item=block}>
+<div class="card <{$block.module}>">
+	<{if $block.title}><header class="card-header">
+	<p class="card-header-title is-centered">
+		<{$block.title}>
+	</p>
+</header><{/if}>
+	<div class="card-content">
+		<div class="content"><{$block.content}></div>
+	</div>
+</div>
+	<{/foreach}>
+	</div>
+<{/if}>

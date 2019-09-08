@@ -1,0 +1,11 @@
+<div class="container">
+<h1 class="title is-1"><{$lang_cp}></h1>
+	<h2 class="subtitle"><{$lang_insmodules}></h2>
+	<section>
+		<ul>
+			<{foreach item=mod from=$sysmod}>
+			<li><a href="<{$mod.link}>" title="<{$mod.title}>"><{$mod.title}></a></li>
+			<{/foreach}>
+		</ul>
+	</section>
+</div>
