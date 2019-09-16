@@ -5,7 +5,9 @@ on:
     branches:
     - master
     - release/*
-    
+
 jobs:
-  name: GIT-FTP Deploy
-  uses: sebastianpopp/git-ftp-action@1.0.0
+  build:
+    name: GIT-FTP Deploy
+    runs-on: ubuntu-18.04
+    uses: sebastianpopp/git-ftp-action@1.0.0
