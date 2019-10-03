@@ -28,26 +28,26 @@
     <div class="container">
       <!--=== Content Part ===-->
         <{if $xoBlocks.page_topleft}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topleft zoneClass="zone_page_topleft" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_topleft zoneClass="zone_page_topleft" zoneContainer=0}>
         <{/if}>
         <{if $xoBlocks.page_topcenter}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter zoneClass="zone_page_topcenter" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter zoneClass="zone_page_topcenter" zoneContainer=0}>
         <{/if}>
         <{if $xoBlocks.page_topright}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topright zoneClass="zone_page_topright" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_topright zoneClass="zone_page_topright" zoneContainer=0}>
         <{/if}>
         <!-- begin of the generic content block -->
         <{if $icms_contents}>
           <{$icms_contents}>
         <{/if}>
         <{if $xoBlocks.page_bottomleft}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft zoneClass="zone_page_bottomleft" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft zoneClass="zone_page_bottomleft" zoneContainer=0}>
         <{/if}>
         <{if $xoBlocks.page_bottomcenter}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter zoneClass="zone_page_bottomcenter" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter zoneClass="zone_page_bottomcenter" zoneContainer=0}>
         <{/if}>
         <{if $xoBlocks.page_bottomright}>
-        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomright zoneClass="zone_page_bottomright" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.page_bottomright zoneClass="zone_page_bottomright" zoneContainer=0}>
         <{/if}>
           <{includeq file='db:system_notification_select.html'}>
         </div>
