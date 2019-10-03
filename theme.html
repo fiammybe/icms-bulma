@@ -31,6 +31,8 @@
         <{if $xoBlocks.canvas_left}>
         <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_left zoneClass="zone_canvas_left" zoneContainer=0}>
         <{/if}>
+    </div>
+    <div class="container">
       <!--=== Content Part ===-->
         <{if $xoBlocks.page_topleft}>
         <{includeq file="$theme_name/centerblocks.html" blocks=$xoBlocks.page_topleft zoneClass="zone_page_topleft" zoneContainer=0}>
@@ -41,6 +43,8 @@
         <{if $xoBlocks.page_topright}>
         <{includeq file="$theme_name/centerblocks.html" blocks=$xoBlocks.page_topright zoneClass="zone_page_topright" zoneContainer=0}>
         <{/if}>
+          </div>
+    <div class="container">
         <!-- begin of the generic content block -->
         <{if $icms_contents}>
           <{$icms_contents}>
@@ -54,9 +58,11 @@
         <{if $xoBlocks.page_bottomright}>
         <{includeq file="$theme_name/centerblocks.html" blocks=$xoBlocks.page_bottomright zoneClass="zone_page_bottomright" zoneContainer=0}>
         <{/if}>
+          </div>
+    <div class="container">
         <!--=== Right Column ===-->
         <{if $xoBlocks.canvas_right}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_right zoneClass="zone_page_bottomleft" zoneContainer=0}>
+        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_right zoneClass="zone_canvas_right" zoneContainer=0}>
         <{/if}>
 
           <{includeq file='db:system_notification_select.html'}>
