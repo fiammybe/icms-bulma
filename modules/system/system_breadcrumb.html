@@ -1,0 +1,13 @@
+<nav class="breadcrumb" aria-label="breadcrumbs">
+	<ul>
+		<{foreach item=breadcrumb_item from=$icms_breadcrumb_items name=loop}>
+		<li<{if $smarty.foreach.loop.last}> class="is-active"<{/if}>>
+		<{if $breadcrumb_item.link}>
+		<a href="<{$breadcrumb_item.link}>"<{if $smarty.foreach.loop.last}> aria-current="page"<{/if}>><{$breadcrumb_item.caption}></a>
+		<{else}>
+		<{$breadcrumb_item.caption}>
+		<{/if}>
+		</li>
+		<{/foreach}>
+	</ul>
+</nav>
