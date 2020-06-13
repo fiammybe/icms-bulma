@@ -21,13 +21,35 @@
     <!-- Module Header -->
     <{$icms_module_header}>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
     <link rel="stylesheet" href="<{xoImgUrl style.css}>">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
-  <section class="section">
     <div class="container">
+
+      <nav class="level">
+        <!-- Left side -->
+        <div class="level-left">
+          <div class="level-item">
+            <a href="<{xoAppUrl /}>" title="<{$icms_sitename}>"><img src="<{$icms_imageurl}>img/logo.png" alt="<{$icms_sitename}>" /></a>
+          </div>
+          <{if $xoBlocks.header_left}>
+          <div class="level-item">
+            <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.header_left zoneClass="zone_header_left" zoneContainer=0}>
+        </div>
+          <{/if}>
+        </div>
+        <!-- Right side -->
+        <div class="level-right">
+          <{if $xoBlocks.header_right}>
+          <div class="level-item">
+            <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.header_right zoneClass="zone_header_right" zoneContainer=0}>
+          </div>
+          <{/if}>
+        </div>
+
+      </nav>
       <!--=== Left Column ===-->
         <{if $xoBlocks.canvas_left}>
         <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_left zoneClass="zone_canvas_left" zoneContainer=0}>
@@ -71,6 +93,25 @@
           <{includeq file='db:system_notification_select.html'}>
         </div>
     </div>
-  </section>
+    <div class="container">
+  <footer class="footer">
+    <div class="level">
+      <div class="level-left">
+        <{if $xoBlocks.footer_left}>
+        <div class="level-item">
+          <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.footer_left zoneClass="zone_footer_left" zoneContainer=0}>
+        </div>
+        <{/if}>
+      </div>
+      <div class="level-right">
+        <{if $xoBlocks.footer_right}>
+        <div class="level-item">
+          <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.footer_right zoneClass="zone_footer_right" zoneContainer=0}>
+        </div>
+        <{/if}>
+      </div>
+    </div>
+  </footer>
+    </div>
   </body>
 </html>
