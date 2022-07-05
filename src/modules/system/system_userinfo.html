@@ -1,0 +1,78 @@
+<{if $theme_debug}>
+<span><{$smarty.template}></span>
+<{/if}>
+
+
+<!-- About Me Block -->
+<div class="card">
+  <header class="card-header">
+    <p class="card-header-title">
+      <{$lang_allaboutuser}>
+    </p>
+    <button class="card-header-icon" aria-label="more options">
+      <span class="icon">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+    </button>
+  </header>
+
+    <div class="card-content">
+      <div class="columns">
+
+      <div class="media column">
+        <{if $user_avatarurl}>
+        <div class="media-left">
+          <figure class="image is-48x48">
+            <img class="is-rounded" src="<{$user_avatarurl}>" alt="<{$lang_avatar}>">
+          </figure>
+        </div>
+        <{/if}>
+        <div class="media-content">
+          <p class="title is-4"><{$user_realname}></p>
+          <{if $user_occupation}><p class="subtitle is-6"><{$user_occupation}></p><{/if}>
+          <{if $user_websiteurl}><p class="is-6"><span class="icon"><i class="fas fa-globe"></i></span> <{$user_websiteurl}></p><{/if}>
+          <{if $user_location}><p class="is-6"><span class="icon"><i class="fas fa-map-marker-alt"></i></span> <{$user_location}></p><{/if}>
+          <{if $user_interest}><p class="is-6"><{$user_interest}></p><{/if}>
+        </div>
+      </div>
+      <div class="content column">
+        <{if $lang_allaboutuser}><p><{$lang_allaboutuser}></p><{/if}>
+        <{if $user_extrainfo}><p><{$user_extrainfo}></p><{/if}>
+        <{if $user_showsignature == true}><p><{$user_signature}></p><{/if}>
+      </div>
+      </div>
+    </div>
+
+  <footer class="card-footer is-always-bottom">
+    <a href="edituser.php" class="card-footer-item"><{$lang_editprofile}></a>
+    <a href="edituser.php?op=avatarform" class="card-footer-item"><{$lang_avatar}></a>
+
+  </footer>
+</div>
+<br/>
+<!-- start module search results loop -->
+    <div class="columns is-multiline">
+
+    <{foreach item=module from=$modules}>
+      <div class="column is-one-third-desktop is-half-tablet">
+        <div class="card has-equal-height">
+          <header class="card-header">
+            <p class="card-header-title"><{$module.name}></p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <{foreach item=result from=$module.results}>
+              <img src="<{$result.image}>" alt="<{$module.name}>" /> <a href="<{$result.link}>" title="<{$result.title}>"><{$result.title}></a> <br /><small>(<{$result.time}>)</small><br />
+              <{/foreach}>
+            </div>
+          </div>
+          <footer class="card-footer is-always-bottom">
+            <div class="card-footer-item"><{$module.showall_link}></div>
+          </footer>
+        </div>
+      </div>
+
+    <{/foreach}>
+    </div>
+<br/>
+<!-- end module search results loop -->
