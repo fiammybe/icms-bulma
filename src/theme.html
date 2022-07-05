@@ -1,117 +1,109 @@
-<{assign var=theme_name value=$xoTheme->folderName}>
 <!DOCTYPE html>
 <html lang="<{$icms_langcode}>">
-  <head>
-    <meta charset="<{$icms_langcode}>">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><{if $icms_pagetitle !=''}><{$icms_pagetitle}> : <{/if}><{$icms_sitename}></title>
-    
-    <meta name="robots" content="<{$icms_meta_robots}>" />
-    <meta name="keywords" content="<{$icms_meta_keywords}>" />
-    <meta name="description" content="<{$icms_meta_description}>" />
-    <meta name="rating" content="<{$icms_meta_rating}>" />
-    <meta name="author" content="<{$icms_meta_author}>" />
-    <meta name="copyright" content="<{$icms_meta_copyright}>" />
-    <meta name="generator" content="ImpressCMS" />
+<head>
+    <!-- Theme name -->
+    <{assign var=theme_name value=$xoTheme->folderName}>
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/ico" href="<{xoImgUrl icons/favicon.ico}>" />
-    <link rel="icon" type="image/png" href="<{xoImgUrl icons/icon.png}>" />
+    <title><{if $icms_pagetitle !=''}><{$icms_pagetitle}> : <{/if}><{$icms_sitename}></title>
+    <meta charset="<{$icms_charset}>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="generator" content="ImpressCMS" />
 
     <!-- Module Header -->
     <{$icms_module_header}>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css">
-    <link rel="stylesheet" href="<{xoImgUrl style.css}>">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-  </head>
-  <body>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<{$icms_imageurl}>assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="<{$icms_imageurl}>assets/img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<{$icms_imageurl}>assets/img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<{$icms_imageurl}>assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<{$icms_imageurl}>assets/img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<{$icms_imageurl}>assets/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<{$icms_imageurl}>assets/img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<{$icms_imageurl}>assets/img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<{$icms_imageurl}>assets/img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<{$icms_imageurl}>assets/img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-16x16.png" sizes="16x16">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://impresscms.org/themes/unify3/assets/css/style.css">
+</head>
+<body>
+<!-- upper blocks -->
+<{includeq file="$theme_name/templates/header.html.tpl"}>
+<!--=== End Header ===-->
+<{includeq file="$theme_name/templates/blockszone.html.tpl"}>
+<{if $xoBlocks.slider || $xoBlocks.purchase || $xoBlocks.features}>
+`<section class="section">
+
+<{if $xoBlocks.slider}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.slider}>
+<{/if}>
+<{if $xoBlocks.purchase}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.purchase}>
+<{/if}>
+<{if $xoBlocks.features}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.features}>
+<{/if}>
+</section>
+<{/if}>
+<{if $xoBlocks.page_topleft || $xoBlocks.page_topcenter || $xoBlocks.page_topright}>
+<section>
+<{if $xoBlocks.page_topleft}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topleft}>
+<{/if}>
+<{if $xoBlocks.page_topcenter}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter}>
+<{/if}>
+<{if $xoBlocks.page_topright}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topright}>
+<{/if}>
+</section>
+<{/if}>
+    <!-- Module content -->
+<{if $icms_contents}>
+<section>
     <div class="container">
 
-      <nav class="level">
-        <!-- Left side -->
-        <div class="level-left">
-          <div class="level-item">
-            <a href="<{xoAppUrl /}>" title="<{$icms_sitename}>"><img src="<{$icms_imageurl}>img/logo.png" alt="<{$icms_sitename}>" /></a>
-          </div>
-          <{if $xoBlocks.header_left}>
-          <div class="level-item">
-            <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.header_left zoneClass="zone_header_left" zoneContainer=0}>
-        </div>
-          <{/if}>
-        </div>
-        <!-- Right side -->
-        <div class="level-right">
-          <{if $xoBlocks.header_right}>
-          <div class="level-item">
-            <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.header_right zoneClass="zone_header_right" zoneContainer=0}>
-          </div>
-          <{/if}>
-        </div>
+<{$icms_contents}>
+    </div>
 
-      </nav>
-      <!--=== Left Column ===-->
-        <{if $xoBlocks.canvas_left}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_left zoneClass="zone_canvas_left" zoneContainer=0}>
-        <{/if}>
-    </div>
-    <div class="container">
-      <!--=== Content Part ===-->
-        <{if $xoBlocks.page_topleft}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_topleft zoneClass="zone_page_topleft" zoneContainer=0}>
-        <{/if}>
-        <{if $xoBlocks.page_topcenter}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_topcenter zoneClass="zone_page_topcenter" zoneContainer=0}>
-        <{/if}>
-        <{if $xoBlocks.page_topright}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_topright zoneClass="zone_page_topright" zoneContainer=0}>
-        <{/if}>
-          </div>
-    <div class="container">
-        <!-- begin of the generic content block -->
-        <{if $icms_contents}>
-          <{$icms_contents}>
-        <{/if}>
-    </div>
-      <div class="container">
-        <{if $xoBlocks.page_bottomleft}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_bottomleft zoneClass="zone_page_bottomleft" zoneContainer=0}>
-        <{/if}>
-        <{if $xoBlocks.page_bottomcenter}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_bottomcenter zoneClass="zone_page_bottomcenter" zoneContainer=0}>
-        <{/if}>
-        <{if $xoBlocks.page_bottomright}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.page_bottomright zoneClass="zone_page_bottomright" zoneContainer=0}>
-        <{/if}>
-          </div>
-    <div class="container">
-        <!--=== Right Column ===-->
-        <{if $xoBlocks.canvas_right}>
-        <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.canvas_right zoneClass="zone_canvas_right" zoneContainer=0}>
-        <{/if}>
-
-          <{includeq file='db:system_notification_select.html'}>
-        </div>
-    </div>
-    <div class="container">
-  <footer class="footer">
-    <div class="level">
-      <div class="level-left">
-        <{if $xoBlocks.footer_left}>
-        <div class="level-item">
-          <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.footer_left zoneClass="zone_footer_left" zoneContainer=0}>
-        </div>
-        <{/if}>
-      </div>
-      <div class="level-right">
-        <{if $xoBlocks.footer_right}>
-        <div class="level-item">
-          <{includeq file="$theme_name/blockszone.html" blocks=$xoBlocks.footer_right zoneClass="zone_footer_right" zoneContainer=0}>
-        </div>
-        <{/if}>
-      </div>
-    </div>
-  </footer>
-    </div>
-  </body>
+</section>
+<{/if}>
+        <!-- Bottom blocks -->
+<{if $xoBlocks.recentworks || $xoBlocks.infoblocks}>
+<section>
+<{if $xoBlocks.recentworks}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.recentworks}>
+<{/if}>
+<{if $xoBlocks.infoblocks}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.infoblocks}>
+<{/if}>
+</section>
+<{/if}>
+<{if $xoBlocks.page_bottomleft || $xoBlocks.page_bottomcenter || $xoBlocks.page_bottomright}>
+<section>
+<{if $xoBlocks.page_bottomleft}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft}>
+<{/if}>
+<{if $xoBlocks.page_bottomcenter}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter}>
+<{/if}>
+<{if $xoBlocks.page_bottomright}>
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomrigh}>
+<{/if}>
+</section>
+<{/if}>
+<footer class="footer">
+    <!-- End Content Part -->
+    <{includeq file="$theme_name/templates/footer.html.tpl"}>
+</footer>
+</body>
 </html>
