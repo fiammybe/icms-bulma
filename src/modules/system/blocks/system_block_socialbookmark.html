@@ -1,9 +1,19 @@
-<{foreach item=provider from=$block.provider}>
-<{assign var="dot_at" value=$provider.image|strpos:"."}>
-<span class="icon is-large">
-	  <i class="fab fa-<{$provider.image|substr:0:$dot_at}>"></i>
-	</span>
-<a href="<{$provider.link}>" rel="nofollow" title="<{$provider.title}>">
-	<{$provider.image|substr:0:$dot_at}>
-</a>
-<{/foreach}>
+<div class="level">
+	<{foreach item=provider from=$block.provider}>
+	<{assign var="dot_at" value=$provider.image|strpos:"."}>
+	<div class="level-item has-text-centered">
+		<div>
+			<p class="header">
+				<a href="<{$provider.link}>" rel="nofollow" title="<{$provider.title}>">
+				<span class="icon is-large">
+	  				<i class="fab fa-2x fa-<{$provider.image|substr:0:$dot_at}>"></i>
+				</span>
+				</a>
+			</p>
+<!--			<p class="title">
+				<a href="<{$provider.link}>" rel="nofollow" title="<{$provider.title}>"><{$provider.image|substr:0:$dot_at}></a>
+			</p>-->
+		</div>
+	</div>
+	<{/foreach}>
+</div>
