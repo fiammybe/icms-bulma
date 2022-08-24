@@ -1,0 +1,87 @@
+<{if $content_content}>
+<{if $content_content.userCanEditAndDelete}>
+<!--<div class="dropdown">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>...</span>
+            <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+        <div class="dropdown-content">
+            <div class="dropdown-item">
+                <{$content_content.editItemLink}> Edit
+            </div>
+            <div class="dropdown-item">
+                <{$content_content.deleteItemLink}> Delete
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="dropdown">
+    <div class="dropdown-trigger">
+        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+            <span>Click me</span>
+            <span class="icon is-small">
+        <i class="fas fa-angle-down" aria-hidden="true"></i>
+      </span>
+        </button>
+    </div>
+    <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+        <div class="dropdown-content">
+            <a href="#" class="dropdown-item">
+                Overview
+            </a>
+            <a href="#" class="dropdown-item">
+                Modifiers
+            </a>
+            <a href="#" class="dropdown-item">
+                Grid
+            </a>
+            <a href="#" class="dropdown-item">
+                Form
+            </a>
+            <a href="#" class="dropdown-item">
+                Elements
+            </a>
+            <a href="#" class="dropdown-item">
+                Components
+            </a>
+            <a href="#" class="dropdown-item">
+                Layout
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+                More
+            </a>
+        </div>
+    </div>
+</div>
+<{/if}>
+<div class="content <{if $content_content.userCanEditAndDelete}>im-block<{/if}>">
+
+    <div class="row">
+        <{if $showInfo}><div class="content_content_info"><{$content_content.content_info}></div><{/if}>
+        <div class="content_content_body"><{$content_content.content_body}></div>
+    </div>
+
+    <{if $showSubs && $content_content.content_hassubs}>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="headline">
+                <h2><{$smarty.const._MD_CONTENT_SUBS}></h2>
+            </div>
+
+            <{foreach item=sub from=$content_content.content_subs}>
+            <div class="col-lg-4">
+                <h3><{$sub.itemLink}></h3>
+                <p><{$sub.content_body|truncate:100:"...":false}></p>
+            </div>
+            <{/foreach}>
+        </div>
+    </div>
+    <{/if}>
+</div>
+<{/if}>

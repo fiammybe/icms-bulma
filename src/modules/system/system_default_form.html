@@ -1,0 +1,20 @@
+<{$form.javascript}>
+<form name="<{$form.name}>" action="<{$form.action}>" method="<{$form.method}>" <{$form.extra}>>
+<form name="<{$form.name}>" action="<{$form.action}>" method="<{$form.method}>" <{$form.extra}>>
+<div class="title is-2"><{$form.title}></div>
+{foreach item=element from=$form.elements}>
+<{if $element.hidden != true}>
+<div class="field">
+	<label class="label"><{$element.caption}></label>
+	<{if $element.description}>
+	<p class="help"><{$element.description}></p>
+	<{/if}>
+	<div class="control">
+		<{$element.body}>
+	</div>
+</div>
+<{else}>
+<{$element.body}>
+<{/if}>
+<{/foreach}>
+</form>

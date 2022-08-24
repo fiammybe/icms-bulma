@@ -14,13 +14,19 @@
     <{if $xoBlocks.footer_news}>
 
         <div class="column">
-            <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.footer_news zoneClass="footerlist"
-            }>
+            <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.footer_news zoneClass="footerlist"}>
         </div>
     <{/if}>
 </div>
-<{if $xoBlocks.footer_news}>
 <div class="content has-text-centered">
-    <{$icms_footer}>
+    <p><{$icms_footer}></p>
+    <p><a href="https://bulma.io">
+            <img
+                    src="https://bulma.io/images/made-with-bulma.png"
+                    alt="Made with Bulma"
+                    width="128"
+                    height="24">
+        </a>
+    </p>
+
 </div>
-<{/if}>

@@ -1,0 +1,84 @@
+<{assign var=theme_name value=$xoTheme->folderName}>
+<{if $lang_reset !== 1}>
+<div style="position: relative;">
+	<div>
+		<fieldset style="padding: 10px;">
+			<legend style="font-weight: bold;"><{$lang_login}></legend>
+			<div id="block_login_form">
+				<form action="<{$xoops_url}>/user.php" method="post">
+					<div class="field">
+						<label class="label"><{$block.lang_username}></label>
+						<div class="control">
+							<input class="input" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
+						</div>
+					</div>
+					<div class="field">
+						<label class="label"><{$block.lang_password}></label>
+						<div class="control">
+							<input class="input" type="password" name="pass" maxlength="32">
+						</div>
+					</div>
+					<{if $block.rememberme }>
+					<div class="field">
+						<div class="control">
+							<label class="checkbox">
+								<input type="checkbox" name="rememberme" value="On">
+								<{$block.lang_rememberme}></a>
+							</label>
+						</div>
+					</div>
+					<{/if}>
+					<div><input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" /></div>
+					<div><input type="hidden" name="op" value="login" /></div>
+					<div><input type="submit" value="<{$lang_login}>" /><br /></div>
+
+				</form>
+			</div>
+
+
+			<br />
+			<a href="<{$xoops_url}>/user.php#lost" title="<{$block.lang_lostpass}>"><{$block.lang_lostpass}></a>
+			<{if $block.registration }>
+			<br />
+			<{/if}>
+			<{if $allow_registration }>
+				<div><{$lang_notregister}><br /></div>
+			<{/if}>
+		</fieldset>
+	</div>
+
+	<div>
+		<fieldset style="padding: 10px;">
+			<legend style="font-weight: bold;"><{$lang_lostpassword}></legend>
+			<div>
+				<{$lang_noproblem}>
+			</div>
+			<form action="lostpass.php" method="post">
+				<div><br /><{$lang_youremail}> <input type="text" name="email" size="26" maxlength="60" />&nbsp;&nbsp;<input type="hidden" name="op" value="mailpasswd" /><input type="hidden" name="t" value="<{$mailpasswd_token}>" />
+		    	<br />
+		    	<br />
+		     	<input type="submit" value="<{$lang_sendpassword}>" /></div>
+			</form>
+		</fieldset>
+	</div>
+</div>
+<{else}>
+<div style="position: relative;height: 250px;">
+	<div style="float: <{$smarty.const._GLOBAL_LEFT}>; width: 80% ">
+		<fieldset style="padding: 10px;">
+			<legend style="font-weight: bold;"><{$smarty.const._US_RESETPASSWORD}></legend>
+			<h1><{$smarty.const._US_RESETPASSTITLE}></h1>
+			<div><{$smarty.const._US_RESETPASSINFO}></div>
+			<br />
+			<form action="resetpass.php" method="post">
+				<{$lang_currentpass}> <input type="password" name="c_password" size="26" maxlength="255" /><br />
+				<{$lang_newpass}> <input type="password" name="password" size="26" maxlength="32" /><br />
+				<{$lang_newpass2}> <input type="password" name="password2" size="26" maxlength="32" />&nbsp;&nbsp;<input type="hidden" name="op" value="resetpass" /><input type="hidden" name="t" value="<{$resetpassword_token}>" />
+		    	<br />
+		    	<br />
+		     	<input type="submit" value="<{$smarty.const._US_RESETPASSWORD}>" />
+			</form>
+		</fieldset>
+	</div>
+</div>
+<{/if}>

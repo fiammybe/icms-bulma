@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="<{$icms_langcode}>">
+<head>
+    <!-- Theme name -->
+    <{assign var=theme_name value=$xoTheme->folderName}>
+
+    <title><{if $icms_pagetitle !=''}><{$icms_pagetitle}> : <{/if}><{$icms_sitename}></title>
+    <meta charset="<{$icms_charset}>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="generator" content="ImpressCMS" />
+
+    <!-- Module Header -->
+    <{$icms_module_header}>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<{$icms_imageurl}>assets/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="57x57" href="<{$icms_imageurl}>assets/img/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="<{$icms_imageurl}>assets/img/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="<{$icms_imageurl}>assets/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="<{$icms_imageurl}>assets/img/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="<{$icms_imageurl}>assets/img/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="<{$icms_imageurl}>assets/img/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="<{$icms_imageurl}>assets/img/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="<{$icms_imageurl}>assets/img/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="<{$icms_imageurl}>assets/img/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-194x194.png" sizes="194x194">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="<{$icms_imageurl}>assets/img/favicon-16x16.png" sizes="16x16">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://impresscms.org/themes/unify3/assets/css/style.css">
+</head>
+<body>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item is-centered" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="112" height="28">
+        </a>
+    </div>
+</nav>
+<div id="xo-canvas"<{if $columns_layout}> class="<{$columns_layout}>"<{/if}>>
+  <!-- Start header -->
+    <div id="xo-header">
+	    <div id="xo-headerlogo"></div>
+    </div>  
+  <!-- End header -->
+  
+<!-- Start Main Content Area -->
+<div id="xo-canvas-content">
+<center>
+<br />
+<div style="width: 85%;background-color: #f7e6bd; color: #222222; text-align: center; border-top: 1px solid #DDDDFF; border-left: 1px solid #DDDDFF; border-right: 1px solid #DDDDFF; border-bottom: 1px solid #DDDDFF; font-weight: bold; padding: 10px;"><{$lang_siteclosemsg}>
+</div>
+<br />
+  <br />
+  <br />
+    <div style="width: 270px;border:1px solid #DDDDFF">
+ <div style="background-color: #f3ac03;font-weight: bold;font-size: 1.2em; color: white;height: 24px"><{$lang_login}></div>
+    <br />
+   <form action="<{$xoops_url}>/user.php" method="post">
+   <{$lang_username}><input type="text" name="uname" size="21" maxlength="25" value="" /><br />
+    <div>
+    <{$lang_password}><input type="password" name="pass" size="21" maxlength="32" /><br />
+        	<input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" />
+        	<input type="hidden" name="xoops_login" value="1" />
+        <br />
+        	<input type="submit" value="<{$lang_login}>" />
+</div> 
+ </form>
+<br />
+</div>
+</center>
+</div><!-- Start footer -->
+<br class="clear" />
+<div id="xo-footer-close">
+</div>
+<!-- end Footer -->
+</div>
+  </body>
+</html>

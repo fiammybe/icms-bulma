@@ -1,0 +1,38 @@
+<div id="block_login_form">
+  <form action="<{$xoops_url}>/user.php" method="post">
+      <div class="field">
+          <label class="label"><{$block.lang_username}></label>
+          <div class="control">
+              <input class="input" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
+          </div>
+      </div>
+      <div class="field">
+          <label class="label"><{$block.lang_password}></label>
+          <div class="control">
+              <input class="input" type="password" name="pass" maxlength="32">
+          </div>
+      </div>
+    <{if $block.rememberme }>
+      <div class="field">
+          <div class="control">
+              <label class="checkbox">
+                  <input type="checkbox" name="rememberme" value="On">
+                  <{$block.lang_rememberme}></a>
+              </label>
+          </div>
+      </div>
+    <{/if}>
+    <div><input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" /></div>
+    <div><input type="hidden" name="op" value="login" /></div>
+    <div><input type="submit" value="<{$block.lang_login}>" /><br /></div>
+
+  </form>
+</div>
+
+
+<br />
+<a href="<{$xoops_url}>/user.php#lost" title="<{$block.lang_lostpass}>"><{$block.lang_lostpass}></a>
+<{if $block.registration }>
+<br />
+<a href="<{$xoops_url}>/register.php" title="<{$block.lang_registernow}>"><{$block.lang_registernow}></a>
+<{/if}>
