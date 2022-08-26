@@ -4,10 +4,12 @@
 <{if $form.title}><div class="title is-3"><{$form.title}></div><{/if}>
 <{foreach item=element from=$form.elements}>
 <div class="field" id="<{$element.name}>">
-  <label class="label"><{$element.caption}> <{if $element.required}> <span>*</span></label>
+  <label class="label"><{$element.caption}> <{if $element.required}> <span>*</span><{/if}></label>
   <div class="control">
     <!--
     <input class="input" type="text" placeholder="Text input">-->
     <{$element.body}>
   </div>
 </div>
+<{/foreach}>
+</form>
