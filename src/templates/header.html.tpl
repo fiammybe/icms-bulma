@@ -14,9 +14,7 @@
 	<div class="navbar-menu">
 		<div class="navbar-start">
 			<{foreach item=block from=$xoBlocks.menu_block name=block}>
-			<div class="navbar-item">
 			<{$block.content}>
-			</div>
 			<{/foreach}>
 		</div>
 		<{if $xoBlocks.topbar}>
