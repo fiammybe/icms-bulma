@@ -4,19 +4,21 @@
 				<img src="<{$icms_imageurl}>assets/img/logo.svg" alt="ImpressCMS logo" width="112" height="28">
 			</a>
 
-			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarSite">
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 				<span aria-hidden="true"></span>
 			</a>
 		</div>
 
-	<div class="navbar-menu">
+	<div id="navbarSite" class="navbar-menu">
+		<{if $xoBlocks.menu_block}>
 		<div class="navbar-start">
 			<{foreach item=block from=$xoBlocks.menu_block name=block}>
 			<{$block.content}>
 			<{/foreach}>
 		</div>
+		<{/if}>
 		<{if $xoBlocks.topbar}>
 			<div class="navbar-end">
 		<{foreach item=block from=$xoBlocks.topbar name=block}>
@@ -25,5 +27,4 @@
 			</div>
 		<{/if}>
 	</div>
-
 </nav>
