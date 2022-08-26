@@ -1,14 +1,22 @@
-<div id="mainmenu">
-	<ul style="list-style-type: none">
-		<li><a href="<{$xoops_url}>/" title="<{$block.lang_home}>"><{$block.lang_home}></a></li>
-		<{foreach item=module from=$block.modules}>
-		<li><a href="<{$xoops_url}>/modules/<{$module.directory}>/" title="<{$module.name}>"><{$module.name}></a></li>
+<a class="navbar-item" href="<{$xoops_url}>/" title="<{$block.lang_home}>"><{$block.lang_home}></a>
+<{foreach item=module from=$block.modules}>
+
+<{if $module.sublinks.sublink}><div class="navbar-item has-dropdown is-hoverable" id="mainmenu_<{$module.name}>">
+	<a class="navbar-link" href="<{$xoops_url}>/modules/<{$module.directory}>/" title="<{$module.name}>">
+		<{$module.name}>
+	</a>
+	<div class="navbar-dropdown">
 		<{foreach item=sublink from=$module.sublinks}>
-		<a href="<{$sublink.url}>" title="<{$sublink.name}>"><{$sublink.name}></a>
+		<a class="navbar-item" href="<{$sublink.url}>" title="<{$sublink.name}>"><{$sublink.name}></a>
 		<{/foreach}>
-		<{/foreach}>
-	  <{if $block.priv_enabled == true}>
-		<li><a class="menuMain<{if $xoops_dirname=='system'}> actlink<{/if}>" href="<{$xoops_url}>/privpolicy.php" title="<{$block.lang_privpolicy}>"><{$block.lang_privpolicy}></a></li>
-	  <{/if}>
-	</ul>
+	</div>
 </div>
+<{else}>
+<a class="navbar-item" href="<{$xoops_url}>/modules/<{$module.directory}>/" title="<{$module.name}>">
+	<{$module.name}>
+</a>
+<{/if}>
+<{/foreach}>
+<{if $block.priv_enabled == true}>
+<li><a class="navbar-item <{if $xoops_dirname=='system'}> actlink<{/if}>" href="<{$xoops_url}>/privpolicy.php" title="<{$block.lang_privpolicy}>"><{$block.lang_privpolicy}></a></li>
+<{/if}>

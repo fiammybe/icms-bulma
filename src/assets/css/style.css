@@ -8,3 +8,24 @@
     flex-direction: column;
 }
 
+nav.navbar
+{
+    border-bottom-color : #DDDDFF;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+div.navbar-start > a.navbar-item:hover
+{
+    border-bottom-color : #f3ac03;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
+div.navbar-start > div.navbar-item > a.navbar-link:hover
+{
+    border-bottom-color : #f3ac03;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}
+
