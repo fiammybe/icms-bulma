@@ -1,0 +1,19 @@
+<{if $item.item_pid==0 && $item.hassub==0}>
+<a class="navbar-item" href="<{$item.url}>" target="<{$item.target}>" <{if $item.target == "_blank"}> rel="external" <{/if}>>
+    <{$item.item_name}>
+</a>
+<{elseif $item.item_pid==0 && $item.hassub==1 && $item.subs}>
+<!-- A menu item with dropdowns -->
+<div class="navbar-item has-dropdown is-hoverable <{if $item.item_classes}><{$item.item_classes}><{/if}>">
+    <a class="navbar-link">
+        <{$item.item_name}>
+    </a>
+    <div class="navbar-dropdown">
+	<{foreach item=item from=$item.subs name=menuitems}>
+        <a class="navbar-item <{if $item.item_classes}><{$item.item_classes}><{/if}>" href="<{$item.url}>" target="<{$item.target}>" <{if $item.target == "_blank"}> rel="external" <{/if}>>
+        <{$item.item_name}>
+        </a>
+	<{/foreach}>
+    </div>
+</div>
+<{/if}>

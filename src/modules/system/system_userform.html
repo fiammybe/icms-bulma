@@ -1,5 +1,61 @@
 <{assign var=theme_name value=$xoTheme->folderName}>
 <{if $lang_reset !== 1}>
+<div class="hero is-fullheight">
+	<div class="hero-body is-justify-content-center is-align-items-center">
+		<div class="columns is-flex is-flex-direction-column box">
+			<div class="column container">
+				<figure class="image" style="width:50%">
+					<img src="<{$icms_imageurl}>assets/img/logo.svg">
+				</figure>
+			</div>
+			<div class="column">
+				<div class="has-text-centered is-size-3"><{$lang_login}></div>
+			</div>
+			<form action="<{$xoops_url}>/user.php" method="post">
+			<div class="column">
+				<label for="email"><{$block.lang_username}></label>
+				<input class="input is-primary" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
+			</div>
+			<div class="column">
+				<label for="Name"><{$block.lang_password}></label>
+				<input class="input is-primary" type="password" name="pass" maxlength="32" placeholder="Password">
+				<a href="forget.html" class="is-size-7 has-text-primary"><{$lang_lostpassword}></a>
+			</div>
+			<div class="column">
+				<label class="checkbox">
+					<input type="checkbox" name="rememberme" value="On">
+					<{$block.lang_rememberme}>
+				</label>
+				<div><input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" /></div>
+				<div><input type="hidden" name="op" value="login" /></div>
+			</div>
+				<div class="column">
+				<button class="button is-primary is-fullwidth" type="submit"><{$lang_login}></button>
+			</div>
+			</form>
+			<{if $allow_registration }>
+			<div class="has-text-centered">
+				<p class="is-size-7"> Don't have an account? <a href="#" class="has-text-primary">Sign up</a>
+				</p>
+			</div>
+			<{/if}>
+			<div class="column">
+				<div class="has-text-centered is-size-3"><{$block.lang_lostpass}> - Lost Password</div>
+			</div>
+			<form action="lostpass.php" method="post">
+				<div class="column">
+						<label for="email"><{$block.lang_lostpass}>email</label>
+						<input class="input is-primary" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
+				</div>
+				<div class="column">
+					<button class="button is-primary is-fullwidth" type="submit"><{$lang_sendpassword}></button>
+				</div>
+			</form>
+
+		</div>
+	</div>
+</div>
+<!--
 <div style="position: relative;">
 	<div>
 		<fieldset style="padding: 10px;">
@@ -61,7 +117,7 @@
 			</form>
 		</fieldset>
 	</div>
-</div>
+</div>-->
 <{else}>
 <div style="position: relative;height: 250px;">
 	<div style="float: <{$smarty.const._GLOBAL_LEFT}>; width: 80% ">

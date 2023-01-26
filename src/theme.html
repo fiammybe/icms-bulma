@@ -40,9 +40,20 @@
 <{includeq file="$theme_name/templates/header.html.tpl"}>
 <!--=== End Header ===-->
 <{includeq file="$theme_name/templates/blockszone.html.tpl"}>
-<{if $xoBlocks.slider || $xoBlocks.purchase || $xoBlocks.features}>
-`<section class="section">
+<{if $xoBlocks.canvas_left || $xoBlocks.canvas_right}>
+<div class="columns">
+    <div class="column">
 
+    </div>
+
+<!-- Left column -->
+<{if $xoBlocks.canvas_left}>
+<div class="column">
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_left}>
+</div>
+<{/if}>
+<{if $xoBlocks.slider || $xoBlocks.purchase || $xoBlocks.features}>
+<section class="section">
 <{if $xoBlocks.slider}>
 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.slider}>
 <{/if}>
@@ -100,6 +111,25 @@
 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomrigh}>
 <{/if}>
 </section>
+<{/if}>
+<{if $icms_rtl}>
+<{if $xoBlocks.canvas_left}>
+    <div class="column">
+<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_left}>
+    </div>
+<{else}>
+<{if $xoBlocks.canvas_right}>
+<div class="column">
+    <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.canvas_right
+zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'
+}>
+</div>
+<{/if}>
+<{/if}>
+    <{/if}>
+    <{if $xoBlocks.canvas_left || $xoBlocks.canvas_right}>
+</div>
+<{/if}>
 <{/if}>
 <footer class="footer">
     <!-- End Content Part -->
