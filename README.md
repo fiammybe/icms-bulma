@@ -1,2 +1,2 @@
-# impresscms-theme-bulmadmin
+# impresscms Bulma base theme 
 A bulma-based admin theme for impresscms
