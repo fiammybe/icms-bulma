@@ -1,2 +1,2 @@
 # impresscms Bulma base theme 
-A bulma-based admin theme for impresscms
+A bulma-based front and admin theme for impresscms
