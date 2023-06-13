@@ -8,7 +8,7 @@
     <meta charset="<{$icms_charset}>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta name="generator" content="ImpressCMS" />
+    <meta name="generator" content="ImpressCMS"/>
 
     <!-- Module Header -->
     <{$icms_module_header}>
@@ -40,97 +40,71 @@
 <{includeq file="$theme_name/templates/header.html.tpl"}>
 <!--=== End Header ===-->
 <{includeq file="$theme_name/templates/blockszone.html.tpl"}>
-<{if $xoBlocks.canvas_left || $xoBlocks.canvas_right}>
 <div class="columns">
-    <div class="column">
-
+    <!-- Left column -->
+    <{if $xoBlocks.canvas_left}>
+    <div class="column is-one-fifth">
+        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_left}>
     </div>
-
-<!-- Left column -->
-<{if $xoBlocks.canvas_left}>
-<div class="column">
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_left}>
-</div>
-<{/if}>
-<{if $xoBlocks.slider || $xoBlocks.purchase || $xoBlocks.features}>
-<section class="section">
-<{if $xoBlocks.slider}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.slider}>
-<{/if}>
-<{if $xoBlocks.purchase}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.purchase}>
-<{/if}>
-<{if $xoBlocks.features}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.features}>
-<{/if}>
-</section>
-<{/if}>
-<{if $xoBlocks.page_topleft || $xoBlocks.page_topcenter || $xoBlocks.page_topright}>
-<section>
-<{if $xoBlocks.page_topleft}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topleft}>
-<{/if}>
-<{if $xoBlocks.page_topcenter}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter}>
-<{/if}>
-<{if $xoBlocks.page_topright}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topright}>
-<{/if}>
-</section>
-<{/if}>
-    <!-- Module content -->
-<{if $icms_contents}>
-<section>
-    <div class="container">
-
-<{$icms_contents}>
-    </div>
-
-</section>
-<{/if}>
-        <!-- Bottom blocks -->
-<{if $xoBlocks.recentworks || $xoBlocks.infoblocks}>
-<section>
-<{if $xoBlocks.recentworks}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.recentworks}>
-<{/if}>
-<{if $xoBlocks.infoblocks}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.infoblocks}>
-<{/if}>
-</section>
-<{/if}>
-<{if $xoBlocks.page_bottomleft || $xoBlocks.page_bottomcenter || $xoBlocks.page_bottomright}>
-<section>
-<{if $xoBlocks.page_bottomleft}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft}>
-<{/if}>
-<{if $xoBlocks.page_bottomcenter}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter}>
-<{/if}>
-<{if $xoBlocks.page_bottomright}>
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomrigh}>
-<{/if}>
-</section>
-<{/if}>
-<{if $icms_rtl}>
-<{if $xoBlocks.canvas_left}>
-    <div class="column">
-<{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_left}>
-    </div>
-<{else}>
-<{if $xoBlocks.canvas_right}>
-<div class="column">
-    <{includeq file="$theme_name/blockszone.html.tpl" blocks=$xoBlocks.canvas_right
-zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'
-}>
-</div>
-<{/if}>
-<{/if}>
     <{/if}>
-    <{if $xoBlocks.canvas_left || $xoBlocks.canvas_right}>
+    <{if $xoBlocks.page_topleft || $xoBlocks.page_topcenter || $xoBlocks.page_topright || $icms_contents || $xoBlocks.page_bottomleft || $xoBlocks.page_bottomcenter || $xoBlocks.page_bottomright}>
+    <div class="column">
+        <{if $xoBlocks.page_topleft || $xoBlocks.page_topcenter || $xoBlocks.page_topright}>
+        <div class="columns">
+            <{if $xoBlocks.page_topleft}>
+            <div class="column is-one-third">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topleft}>
+            </div>
+            <{/if}>
+            <{if $xoBlocks.page_topcenter}>
+            <div class="column">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter}>
+            </div>
+            <{/if}>
+            <{if $xoBlocks.page_topright}>
+            <div class="column is-one-third">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topright}>
+            </div>
+            <{/if}>
+        </div>
+        <{/if}>
+        <!-- Module content -->
+        <{if $icms_contents}>
+        <div class="container">
+            <{$icms_contents}>
+            bla
+        </div>
+        <{/if}>
+        <!-- Bottom blocks -->
+        <{if $xoBlocks.page_bottomleft || $xoBlocks.page_bottomcenter || $xoBlocks.page_bottomright}>
+        <div class="columns">
+            <{if $xoBlocks.page_bottomleft}>
+            <div class="column">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft}>
+            </div>
+            <{/if}>
+            <{if $xoBlocks.page_bottomcenter}>
+            <div class="column">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter}>
+            </div>
+            <{/if}>
+            <{if $xoBlocks.page_bottomright}>
+            <div class="column">
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomrigh}>
+            </div>
+            <{/if}>
+        </div>
+        <{/if}>
+        <{/if}>
+    </div>
+    <{if $xoBlocks.canvas_right}>
+    <div class="column is-one-fifth">
+        <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.canvas_right}>
+    </div>
+    <{/if}>
+
 </div>
-<{/if}>
-<{/if}>
+
 <footer class="footer">
     <!-- End Content Part -->
     <{includeq file="$theme_name/templates/footer.html.tpl"}>

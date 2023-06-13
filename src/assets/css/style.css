@@ -8,14 +8,27 @@
     flex-direction: column;
 }
 
-nav.navbar
+.navbar
 {
-    border-bottom-color : #DDDDFF;
+    border-bottom-color : rgb(102, 102, 102);
     border-bottom-style: solid;
     border-bottom-width: 2px;
+    text-transform: uppercase;
 }
 
-div.navbar-start > a.navbar-item:hover
+.navbar-item.is-mega {
+    position: static;
+}
+
+.is-mega-menu-title {
+    margin-bottom: 0;
+    padding: .375rem 1rem;
+}
+.navbar-item a {
+color: rgb(102, 102, 102);
+}
+
+.navbar-item:hover
 {
     border-bottom-color : #f3ac03;
     border-bottom-style: solid;
@@ -29,3 +42,8 @@ div.navbar-start > div.navbar-item > a.navbar-link:hover
     border-bottom-width: 2px;
 }
 
+.breadcrumbs {
+    border-bottom-color : rgb(102, 102, 102);
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+}

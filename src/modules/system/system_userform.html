@@ -1,138 +1,102 @@
 <{assign var=theme_name value=$xoTheme->folderName}>
 <{if $lang_reset !== 1}>
-<div class="hero is-fullheight">
-	<div class="hero-body is-justify-content-center is-align-items-center">
-		<div class="columns is-flex is-flex-direction-column box">
-			<div class="column container">
-				<figure class="image" style="width:50%">
-					<img src="<{$icms_imageurl}>assets/img/logo.svg">
-				</figure>
-			</div>
-			<div class="column">
-				<div class="has-text-centered is-size-3"><{$lang_login}></div>
-			</div>
-			<form action="<{$xoops_url}>/user.php" method="post">
-			<div class="column">
-				<label for="email"><{$block.lang_username}></label>
-				<input class="input is-primary" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
-			</div>
-			<div class="column">
-				<label for="Name"><{$block.lang_password}></label>
-				<input class="input is-primary" type="password" name="pass" maxlength="32" placeholder="Password">
-				<a href="forget.html" class="is-size-7 has-text-primary"><{$lang_lostpassword}></a>
-			</div>
-			<div class="column">
-				<label class="checkbox">
-					<input type="checkbox" name="rememberme" value="On">
-					<{$block.lang_rememberme}>
-				</label>
-				<div><input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" /></div>
-				<div><input type="hidden" name="op" value="login" /></div>
-			</div>
-				<div class="column">
-				<button class="button is-primary is-fullwidth" type="submit"><{$lang_login}></button>
-			</div>
-			</form>
-			<{if $allow_registration }>
-			<div class="has-text-centered">
-				<p class="is-size-7"> Don't have an account? <a href="#" class="has-text-primary">Sign up</a>
-				</p>
-			</div>
-			<{/if}>
-			<div class="column">
-				<div class="has-text-centered is-size-3"><{$block.lang_lostpass}> - Lost Password</div>
-			</div>
-			<form action="lostpass.php" method="post">
-				<div class="column">
-						<label for="email"><{$block.lang_lostpass}>email</label>
-						<input class="input is-primary" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
-				</div>
-				<div class="column">
-					<button class="button is-primary is-fullwidth" type="submit"><{$lang_sendpassword}></button>
-				</div>
-			</form>
-
-		</div>
-	</div>
-</div>
-<!--
 <div style="position: relative;">
 	<div>
-		<fieldset style="padding: 10px;">
-			<legend style="font-weight: bold;"><{$lang_login}></legend>
-			<div id="block_login_form">
-				<form action="<{$xoops_url}>/user.php" method="post">
+		<fieldset>
+			<legend><{$lang_login}></legend>
+			<div id="icms_block_login_form">
+				<form action="user.php" method="post">
 					<div class="field">
-						<label class="label"><{$block.lang_username}></label>
+						<label class="label"><{$lang_username}></label>
 						<div class="control">
-							<input class="input" type="text" name="uname" value="<{$block.unamevalue}>" placeholder="<{$block.lang_username}>" maxlength="25">
+							<input class="input" type="text" name="uname" size="21" maxlength="25" value="<{$usercookie}>">
 						</div>
 					</div>
 					<div class="field">
-						<label class="label"><{$block.lang_password}></label>
+						<label class="label"><{$lang_password}></label>
 						<div class="control">
-							<input class="input" type="password" name="pass" maxlength="32">
+							<input class="input" type="password" name="pass" size="21" maxlength="32">
 						</div>
 					</div>
-					<{if $block.rememberme }>
+
+					<{if $rememberme }>
 					<div class="field">
 						<div class="control">
 							<label class="checkbox">
 								<input type="checkbox" name="rememberme" value="On">
-								<{$block.lang_rememberme}></a>
+								<{$lang_rememberme}>
 							</label>
 						</div>
 					</div>
 					<{/if}>
-					<div><input type="hidden" name="xoops_redirect" value="<{$xoops_requesturi}>" /></div>
 					<div><input type="hidden" name="op" value="login" /></div>
-					<div><input type="submit" value="<{$lang_login}>" /><br /></div>
-
+					<div><input type="hidden" name="xoops_redirect" value="<{$redirect_page}>"/></div>
+					<div class="control">
+						<button type="submit" class="button is-primary"><{$lang_login}></button>
+					</div>
 				</form>
+
 			</div>
-
-
-			<br />
-			<a href="<{$xoops_url}>/user.php#lost" title="<{$block.lang_lostpass}>"><{$block.lang_lostpass}></a>
-			<{if $block.registration }>
-			<br />
-			<{/if}>
+			<a name="lost"></a>
 			<{if $allow_registration }>
-				<div><{$lang_notregister}><br /></div>
+			<div style="text-align: <{$smarty.const._GLOBAL_RIGHT}>;"><{$lang_notregister}><br /></div>
 			<{/if}>
 		</fieldset>
 	</div>
 
 	<div>
-		<fieldset style="padding: 10px;">
-			<legend style="font-weight: bold;"><{$lang_lostpassword}></legend>
+		<fieldset>
+			<legend><{$lang_lostpassword}></legend>
 			<div>
 				<{$lang_noproblem}>
 			</div>
 			<form action="lostpass.php" method="post">
-				<div><br /><{$lang_youremail}> <input type="text" name="email" size="26" maxlength="60" />&nbsp;&nbsp;<input type="hidden" name="op" value="mailpasswd" /><input type="hidden" name="t" value="<{$mailpasswd_token}>" />
-		    	<br />
-		    	<br />
-		     	<input type="submit" value="<{$lang_sendpassword}>" /></div>
+				<div class="field">
+					<label class="label"><{$lang_youremail}></label>
+					<div class="control">
+						<input class="input" type="text" name="email" size="26" maxlength="60">
+					</div>
+				</div>
+				<input type="hidden" name="op" value="mailpasswd" />
+				<input type="hidden" name="t" value="<{$mailpasswd_token}>" />
+				<div class="control">
+					<button type="submit" class="button is-primary"><{$lang_sendpassword}></button>
+				</div>
 			</form>
 		</fieldset>
 	</div>
-</div>-->
+</div>
 <{else}>
 <div style="position: relative;height: 250px;">
 	<div style="float: <{$smarty.const._GLOBAL_LEFT}>; width: 80% ">
 		<fieldset style="padding: 10px;">
 			<legend style="font-weight: bold;"><{$smarty.const._US_RESETPASSWORD}></legend>
-			<h1><{$smarty.const._US_RESETPASSTITLE}></h1>
+			<h1 class="title"><{$smarty.const._US_RESETPASSTITLE}></h1>
 			<div><{$smarty.const._US_RESETPASSINFO}></div>
-			<br />
 			<form action="resetpass.php" method="post">
-				<{$lang_currentpass}> <input type="password" name="c_password" size="26" maxlength="255" /><br />
-				<{$lang_newpass}> <input type="password" name="password" size="26" maxlength="32" /><br />
-				<{$lang_newpass2}> <input type="password" name="password2" size="26" maxlength="32" />&nbsp;&nbsp;<input type="hidden" name="op" value="resetpass" /><input type="hidden" name="t" value="<{$resetpassword_token}>" />
-		    	<br />
-		    	<br />
-		     	<input type="submit" value="<{$smarty.const._US_RESETPASSWORD}>" />
+				<div class="field">
+					<label class="label"><{$lang_currentpass}></label>
+					<div class="control">
+						<input class="input" type="password" name="c_password" size="26" maxlength="255">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label"><{$lang_newpass}></label>
+					<div class="control">
+						<input class="input" type="password" name="password" size="26" maxlength="255">
+					</div>
+				</div>
+				<div class="field">
+					<label class="label"><{$lang_newpass2}></label>
+					<div class="control">
+						<input class="input" type="password" name="password2" size="26" maxlength="255">
+					</div>
+				</div>
+				<input type="hidden" name="op" value="resetpass" />
+				<input type="hidden" name="t" value="<{$resetpassword_token}>" />
+				<div class="control">
+					<button type="submit" class="button is-primary"><{$smarty.const._US_RESETPASSWORD}></button>
+				</div>
 			</form>
 		</fieldset>
 	</div>
