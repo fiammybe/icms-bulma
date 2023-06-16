@@ -10,7 +10,7 @@
 
 .navbar
 {
-    border-bottom-color : rgb(102, 102, 102);
+    border-bottom-color : rgb(238,238,238);
     border-bottom-style: solid;
     border-bottom-width: 2px;
     text-transform: uppercase;
@@ -42,8 +42,8 @@ div.navbar-start > div.navbar-item > a.navbar-link:hover
     border-bottom-width: 2px;
 }
 
-.breadcrumbs {
-    border-bottom-color : rgb(102, 102, 102);
+.titlebar {
+    border-bottom-color : rgb(238,238,238);
     border-bottom-style: solid;
     border-bottom-width: 2px;
 }
