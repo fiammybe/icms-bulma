@@ -52,17 +52,20 @@
         <{if $xoBlocks.page_topleft || $xoBlocks.page_topcenter || $xoBlocks.page_topright}>
         <div class="columns">
             <{if $xoBlocks.page_topleft}>
-            <div class="column is-one-third">
+            <div class="column">
+                <p>top left</p>
                 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topleft}>
             </div>
             <{/if}>
             <{if $xoBlocks.page_topcenter}>
             <div class="column">
+                <p>top middle</p>
                 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topcenter}>
             </div>
             <{/if}>
             <{if $xoBlocks.page_topright}>
-            <div class="column is-one-third">
+            <div class="column">
+                <p>top right</p>
                 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_topright}>
             </div>
             <{/if}>
@@ -70,9 +73,11 @@
         <{/if}>
         <!-- Module content -->
         <{if $icms_contents}>
-        <div class="container">
+        <div class="columns">
+        <div class="column">
+            <p>Content</p>
             <{$icms_contents}>
-            bla
+        </div>
         </div>
         <{/if}>
         <!-- Bottom blocks -->
@@ -80,17 +85,20 @@
         <div class="columns">
             <{if $xoBlocks.page_bottomleft}>
             <div class="column">
+                <p>bottom left</p>
                 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomleft}>
             </div>
             <{/if}>
             <{if $xoBlocks.page_bottomcenter}>
             <div class="column">
+                <p>bottom center</p>
                 <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomcenter}>
             </div>
             <{/if}>
             <{if $xoBlocks.page_bottomright}>
             <div class="column">
-                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomrigh}>
+                <p>bottom right</p>
+                <{includeq file="$theme_name/templates/blockszone.html.tpl" blocks=$xoBlocks.page_bottomright}>
             </div>
             <{/if}>
         </div>
