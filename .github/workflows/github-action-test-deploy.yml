@@ -1,5 +1,8 @@
 name: 🚀 FTP Deploy
 on: [push, workflow_dispatch]
+  push:
+    branches:
+    - master
 jobs:
   ftp-deploy:
     runs-on: ubuntu-latest
