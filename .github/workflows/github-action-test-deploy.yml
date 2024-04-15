@@ -1,5 +1,5 @@
 name: 🚀 FTP Deploy
-on: [push, workflow_dispatch]
+on:
   push:
     branches:
     - master
