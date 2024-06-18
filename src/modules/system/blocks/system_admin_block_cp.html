@@ -1,0 +1,7 @@
+	<{foreach item=mod from=$block.sysmod}>
+	<a href="<{$mod.link}>" class="panel-block" title="<{$mod.title}>">
+		<span class="panel-icon">
+      <{if $mod.image != ''}><img src="<{$mod.image}>" alt="<{$mod.title}>"/><{else}><i class="fas fa-book"
+                                                                                        aria-hidden="true"></i><{/if}>
+    </span><{$mod.title}></a>
+	<{/foreach}>

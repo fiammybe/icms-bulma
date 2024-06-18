@@ -1,0 +1,19 @@
+<p class="panel-tabs">
+<{foreach item=group key=key from=$block}>
+	<a><{$key}></a>
+<{/foreach}>
+</p>
+<{foreach item=group key=key from=$block}>
+	<{foreach item=mod from=$group}>
+	<a href="<{$mod.link}>" class="panel-block">
+    <span class="panel-icon">
+      <{if $mod.image != ''}><img src="<{$mod.image}>" alt="<{$mod.title}>"/><{else}><i class="fas fa-book"
+                                                                                        aria-hidden="true"></i><{/if}>
+    </span>
+		<{$mod.title}>
+	</a>
+
+	<{/foreach}>
+
+
+<{/foreach}>

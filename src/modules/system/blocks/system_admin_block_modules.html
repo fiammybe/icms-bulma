@@ -1,0 +1,13 @@
+	<{foreach item=mod from=$block.mods}>
+	<a href="<{$mod.link}>" class="panel-block" title="<{$mod.title}>">
+		<span class="panel-icon">
+      <{if $mod.iconbig != ''}><img src="<{$mod.iconbig}>" alt="<{$mod.title}>"/><{else}><i class="fas fa-book"
+                                                                                        aria-hidden="true"></i><{/if}>
+    </span>
+		<{$mod.title}></a>
+	<{/foreach}>
+
+
+
+
+
