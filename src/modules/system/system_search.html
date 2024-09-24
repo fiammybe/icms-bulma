@@ -1,29 +1,33 @@
 <{if $basic_search == false && $search_results }>
-<h1 class="title"><{$label_search_results}>: <{$showing}></h1>
+<h1 class="title"><{$label_search_results}>:</h1>
+<h2 class="subtitle"><{$showing}></h2>
 <{foreach from=$module_sort_order key=sort_key item=sort_value}>
-<div><b><{$sort_key}></b>: (<{$sort_value}> <{$smarty.const._SR_HITSRETURNED}>)</div>
-<{if $search_results[$sort_key].search_more_url != ''}>
-<span style="margin: 10px; padding: 2px 0.5em 3px 0.5em; height:30px;">
-	  <a href="<{$search_results[$sort_key].search_more_url}>">
-	  <img src="<{$smarty.const.ICMS_IMAGES_SET_URL}>/actions/find.png" alt="<{$search_results[$sort_key].search_more_title}>" /> <{$smarty.const._SR_SHOWALLR}>
-	  </a>
-	  </span>
-<{/if}>
+  <div>
+    <b><{$sort_key}></b>: (<{$sort_value}> <{$smarty.const._SR_HITSRETURNED}>)
+  </div>
+  <{if $search_results[$sort_key].search_more_url != ''}>
+  <a href="<{$search_results[$sort_key].search_more_url}>">
+  <img src="<{$smarty.const.ICMS_IMAGES_SET_URL}>/actions/find.png" alt="<{$search_results[$sort_key].search_more_title}>" /> <{$smarty.const._SR_SHOWALLR}>
+  </a>
+  <{/if}>
 
-<{if $search_results[$sort_key].page_nav != ''}>
-<div><{$search_results[$sort_key].page_nav}></div>
-<{/if}>
+  <{if $search_results[$sort_key].page_nav != ''}>
+  <div>
+    <{$search_results[$sort_key].page_nav}>
+  </div>
+  <{/if}>
 
-<{section name=cur_result loop=$search_results[$sort_key].results}>
-<{math equation="x + y" x=$smarty.section.cur_result.index y=$start}>
-<img alt="<{$search_results[$sort_key].results[cur_result].processed_image_alt_text}>" src="<{$search_results[$sort_key].results[cur_result].processed_image_url}>" />
-<{$search_results[$sort_key].results[cur_result].processed_image_tag}>&nbsp;
-<b><a href="<{$search_results[$sort_key].results[cur_result].link}>"><{$search_results[$sort_key].results[cur_result].processed_title}></a>						</b>
-<br /><small>&nbsp;&nbsp;<a href="<{$search_results[$sort_key].results[cur_result].processed_user_url}>"><{$search_results[$sort_key].results[cur_result].processed_user_name}></a> <{$search_results[$sort_key].results[cur_result].processed_time}></small>
-<{/section}>
-<{if $search_results[$sort_key].page_nav != ''}>
-<div style="padding-bottom: 5px; text-align: <{$smarty.const._GLOBAL_RIGHT}>"><{$search_results[$sort_key].page_nav}></div>
-<{/if}>
+  <{section name=cur_result loop=$search_results[$sort_key].results}>
+  <{math equation="x + y" x=$smarty.section.cur_result.index y=$start}>
+  <img alt="<{$search_results[$sort_key].results[cur_result].processed_image_alt_text}>" src="<{$search_results[$sort_key].results[cur_result].processed_image_url}>" />
+  <{$search_results[$sort_key].results[cur_result].processed_image_tag}>
+  <b><a href="<{$search_results[$sort_key].results[cur_result].link}>"><{$search_results[$sort_key].results[cur_result].processed_title}></a></b>
+  <a href="<{$search_results[$sort_key].results[cur_result].processed_user_url}>"><{$search_results[$sort_key].results[cur_result].processed_user_name}></a> <{$search_results[$sort_key].results[cur_result].processed_time}>
+  <{/section}>
+
+  <{if $search_results[$sort_key].page_nav != ''}>
+  <div><{$search_results[$sort_key].page_nav}></div>
+  <{/if}>
 <{/foreach}>
 
 <strong><{$label_search_type}> </strong><{$search_type}><br />
@@ -41,4 +45,5 @@
 </strong><br />
 <{/if}><br />
 <{/if}>
+
 <{$search_form}>

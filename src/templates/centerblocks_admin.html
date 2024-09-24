@@ -5,22 +5,20 @@
 <{/if}>
 
 <{assign var=zone value="page_$topbottom$lcr"}>
-
+	
 <{if $xoBlocks[$zone]}>
 	<div class="xo-blockszone x2-secondary" id="xo-page-<{$topbottom}><{$lcr}>blocks">
 	<{foreach from=$xoBlocks[$zone] item=block}>
-		<nav class="panel">
-			<{if $block.title}><p class="panel-heading"><{$block.title}></p><{/if}>
-			<div class="panel-block">
-				<p class="control has-icons-left">
-					<input class="input" type="text" placeholder="Search"/>
-					<span class="icon is-left">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </span>
-				</p>
-			</div>
-			<{$block.content}>
-		</nav>
+	<div class="card <{$block.module}>">
+		<{if $block.title}><header class="card-header">
+		<p class="card-header-title is-centered">
+			<{$block.title}>
+		</p>
+		</header><{/if}>
+		<div class="card-content">
+			<div class="content"><{$block.content}></div>
+		</div>
+	</div>
 	<{/foreach}>
 	</div>
 <{/if}>

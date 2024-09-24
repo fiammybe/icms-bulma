@@ -1,8 +1,11 @@
-<nav class="breadcrumb" aria-label="breadcrumbs">
-	<ul>
+<nav class="breadcrumb" aria-label="breadcrumbs" >
+	<ul itemscope itemtype="https://schema.org/BreadcrumbList">
 		<{foreach item=breadcrumb_item from=$icms_breadcrumb_items name=loop}>
-		<li <{if $smarty.foreach.loop.last}>class="is-active" aria-current="page"<{/if}>><{if $breadcrumb_item.link}><a href="<{$breadcrumb_item.link}>"><{$breadcrumb_item.caption}></a><{else}>
-		<a href="#"><{$breadcrumb_item.caption}></a>
+		<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" <{if $smarty.foreach.loop.last}>class="is-active" aria-current="page"<{/if}>>
+			<{if $breadcrumb_item.link}>
+				<a itemprop="item" href="<{$breadcrumb_item.link}>"><span itemprop="name"><{$breadcrumb_item.caption}></span></a>
+			<{else}>
+				<a href="#"><span itemprop="name"><{$breadcrumb_item.caption}></span></a>
 		<{/if}>
 		</li>
 		<{/foreach}>

@@ -1,0 +1,10 @@
+<{if $block.content_content}>
+	<p><{$block.content_content.spotlight_text}></p>
+
+	<a class="button <{cycle values="is-link,is-primary,is-info,is-danger"}>" href="<{$icms_url}>/modules/content/content.php?content_id=<{$block.content_content.content_id}>">
+  <span class="icon is-large">
+      <i class="fas fa-arrow-alt-circle-right"></i>
+    </span>  
+  </a>
+
+<{/if}>
