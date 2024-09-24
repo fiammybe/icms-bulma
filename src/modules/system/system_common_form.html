@@ -3,16 +3,10 @@
 
 <{if $form.title}><div class="title is-3"><{$form.title}></div><{/if}>
 <{foreach item=element from=$form.elements}>
-<div class="field is-horizontal" id="<{$element.name}>">
-  <div class="field-label">
-    <label class="label"><{$element.caption}> <{if $element.required}> <span>*</span><{/if}></label>
-  </div>
-  <div class="field-body">
-    <div class="field">
-      <p class="control is-expanded">
-        <{$element.body}>
-      </p>
-    </div>
+<div class="field" id="<{$element.name}>">
+  <label class="label"><{$element.caption}> <{if $element.required}> <span>*</span><{/if}></label>
+  <div class="control">
+    <{$element.body}>
   </div>
 </div>
 <{/foreach}>

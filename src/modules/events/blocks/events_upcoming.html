@@ -1,0 +1,13 @@
+<div class="columns">
+    <{foreach item=event from=$block.upcoming_events}>
+        <div class="column is-"6>
+            <p><{$event.date}></p>
+            <p><{$event.title}></p>
+                <a class="button <{cycle values="is-link,is-primary,is-info,is-danger"}>" href="<{$event.itemUrl}>">
+                    <span class="icon is-large">
+                        <i class="fas fa-arrow-alt-circle-right"></i>
+                    </span>
+                </a>
+        </div>
+    <{/foreach}>
+</div>
