@@ -1,0 +1,26 @@
+<div class="media">
+<figure class="media-left>
+<p class="image is-128x128">
+  <img src="<{$xoops_url}>/modules/system/admin/modulesadmin/images/modulesadmin_big.png" />
+  </p>
+</figure>
+<div class="media-content">
+<div class="content">
+<h2 class="title is-2"><{$lang_madmin}></h2>
+</div>
+</div>
+</div>
+<{if $icms_rating_explain}>
+	<h1><{$smarty.const._CO_ICMS_RATING_EXPLAIN_TITLE}></h1>
+	<p><{$smarty.const._CO_ICMS_RATING_EXPLAIN}></p>
+<{/if}>
+
+<p><{$icms_rating_title}></p>
+
+<{if $icms_rating_table}>
+	<{$icms_rating_table}>
+<{/if}>
+
+<{if $addrating}>
+	<{includeq file='db:system_common_form.html' form=$addrating}>
+<{/if}>
