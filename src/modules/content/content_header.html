@@ -1,10 +1,11 @@
 <{if $content_category_path}>
 <nav class="breadcrumb" aria-label="breadcrumbs">
-    <ul>
-
-        <li><a href="#">Bulma</a></li>
-
-        <li class="is-active"><a href="#" aria-current="page">Breadcrumb</a></li>
+    <ul itemscope itemtype="https://schema.org/BreadcrumbList">
+        <{if $content_content.content_pid eq '-------------------------'}>
+			<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a itemprop="item" href="<{$icms_url}>"><span itemprop="name">Home</span></a></li>
+		<{else}>
+			<li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><{$content_content.content_pid}></li>
+		<{/if}>
     </ul>
 </nav>
 <{/if}>

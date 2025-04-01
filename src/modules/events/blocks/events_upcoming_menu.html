@@ -1,0 +1,5 @@
+<{foreach item=event from=$block.upcoming_events}>
+		<div class="navbar-item">
+			<a class="button is-rounded <{cycle values="is-link,is-info,is-danger,is-success"}>" href="<{$event.itemUrl}>"><{$event.title}><br/>(<{$event.date}>)</a>
+		</div>
+<{/foreach}>
