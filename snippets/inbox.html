@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbox</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma/css/bulma.min.css">
+</head>
+<body>
+  <section class="section">
+    <div class="container">
+      <div class="columns is-desktop">
+        <!-- Linkerkolom met mappen -->
+        <aside class="column is-one-quarter">
+          <nav class="menu">
+            <p class="menu-label">Mappen</p>
+            <ul class="menu-list">
+              <li><a href="#">Inbox</a></li>
+              <li><a href="#">Outbox</a></li>
+              <li><a href="#">Archief</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- Hoofdscherm -->
+        <main class="column">
+          <!-- Header -->
+          <div class="box">
+            <h2 class="title is-4">Boodschap</h2>
+            <p><strong>Onderwerp:</strong> [Onderwerp]</p>
+            <p><strong>Ontvangen op:</strong> [Datum]</p>
+            <p><strong>Naam:</strong> [Naam]</p>
+            <p><strong>Email:</strong> [Emailadres]</p>
+          </div>
+
+          <!-- Boodschaptekst -->
+          <div class="box">
+            <p>[Hier komt de boodschaptekst]</p>
+          </div>
+
+          <!-- Actieknoppen -->
+          <div class="buttons">
+            <button class="button is-danger">Verwijder</button>
+            <button class="button is-info">Archiveer</button>
+            <button class="button is-primary">Beantwoord</button>
+            <button class="button is-warning">Toewijzen</button>
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
