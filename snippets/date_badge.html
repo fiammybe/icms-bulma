@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date Badge in Bulma</title>
+  <link href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" rel="stylesheet">
+  <style>
+    .date-badge {
+      display: inline-block;
+      text-align: center;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #f5f5f5;
+    }
+    .date-badge .day {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .date-badge .month {
+      font-size: 0.8rem;
+      color: #555;
+    }
+    .date-badge .year {
+      font-size: 0.6rem;
+      color: #777;
+    }
+    .card-image {
+      position: relative;
+    }
+    .date-badge-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(10px, 10px);
+    }
+  </style>
+</head>
+<body>
+  <div class="date-badge-container">
+    <div class="date-badge">
+      <div class="day">26</div>
+      <div class="month">Maart</div>
+      <div class="year">2025</div>
+    </div>
+  </div>
+</body>
+</html>
