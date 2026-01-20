@@ -88,7 +88,30 @@ unset( $_SESSION['redirect_message'] ) ;
 <div class="columns">
 	<div class="column is-one-fifth is-hidden-touch">
 		<section class="section">
-			<{includeq file="$theme_name/templates/adminmenu.html.tpl"}>
+			<div x-data="{ mobileMenu: false, open: null }">
+
+    <!-- Mobile toggle button -->
+    <button 
+        class="button is-small is-primary is-hidden-tablet mb-2"
+        @click="mobileMenu = !mobileMenu"
+    >
+        Menu
+    </button>
+
+    <!-- Desktop menu: always visible on desktop -->
+    <aside class="menu is-hidden-mobile">
+        <{include file="$theme_name/templates/adminmenu.html.tpl"}>
+    </aside>
+
+    <!-- Mobile menu: toggled, only visible on tablet/mobile -->
+    <aside 
+        class="menu is-hidden-tablet" 
+        :class="{ 'is-hidden': !mobileMenu }"
+    >
+        <{include file="$theme_name/templates/adminmenu.html.tpl"}>
+    </aside>
+
+</div>
 		</section>
 	</div>
 	<div class="column">
