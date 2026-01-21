@@ -91,10 +91,10 @@ unset( $_SESSION['redirect_message'] ) ;
 <div class="columns">
 	<div class="column is-one-fifth is-hidden-touch">
 		<section class="section">
-			<div x-data="{ mobileMenu: false, open: null }">
+			<div x-data="{ mobileMenu: false, openLevel2: null, openLevel3: null, openLevel4: null }">
 
     <!-- Mobile toggle button -->
-    <button 
+    <button
         class="button is-small is-primary is-hidden-tablet mb-2"
         @click="mobileMenu = !mobileMenu"
     >
@@ -107,8 +107,8 @@ unset( $_SESSION['redirect_message'] ) ;
     </aside>
 
     <!-- Mobile menu: toggled, only visible on tablet/mobile -->
-    <aside 
-        class="menu is-hidden-tablet" 
+    <aside
+        class="menu is-hidden-tablet"
         :class="{ 'is-hidden': !mobileMenu }"
     >
         <{include file="$theme_name/templates/adminmenu.html.tpl"}>
