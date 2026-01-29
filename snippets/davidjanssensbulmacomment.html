@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="nl" x-data>
+<head>
+  <meta charset="UTF-8" />
+  <title>Artikel met commentaren</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bulma 1.0.3 -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bulma@1.0.3/css/bulma.min.css"
+  />
+
+  <!-- AlpineJS -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <style>
+    .comment-thread { list-style: none; margin: 0; padding: 0; }
+    .comment { border-left: 3px solid #b5b5b5; padding-left: 1rem; margin-top: 1rem; }
+    .comment-level-1 { margin-left: 0; }
+    .comment-level-2 { margin-left: 1.5rem; }
+    .comment-level-3 { margin-left: 3rem; }
+  </style>
+</head>
+
+<body class="has-background-light">
+
+<header class="section">
+  <div class="container">
+    <h1 class="title is-2">Toegankelijke titel van het artikel</h1>
+    <p class="subtitle is-5">Korte inleidingstekst die uitlegt waar het artikel over gaat.</p>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+
+    <section aria-labelledby="comments-heading">
+      <h2 id="comments-heading" class="title is-4">Commentaren</h2>
+
+      <!-- Nieuw top-level comment -->
+      <form class="box" aria-label="Nieuw commentaar plaatsen">
+        <div class="field">
+          <label class="label" for="comment-text">Commentaar</label>
+          <textarea id="comment-text" class="textarea" rows="3"></textarea>
+        </div>
+        <button type="submit" class="button is-link">Plaats commentaar</button>
+      </form>
+
+      <!-- Commentaarlijst -->
+      <ol class="comment-thread" role="list">
+
+        <!-- COMMENT LEVEL 1 -->
+        <li class="comment comment-level-1" x-data="{ replyOpen:false }">
+          <header class="mb-2">
+            <p class="has-text-weight-semibold">Jan Jansen</p>
+            <p class="is-size-7 has-text-grey">27 januari 2026, 11:30</p>
+          </header>
+
+          <p class="content">
+            Dit is een eerste commentaar op het artikel.
+          </p>
+
+          <button
+            class="button is-small is-light"
+            @click="replyOpen = !replyOpen"
+            :aria-expanded="replyOpen"
+          >
+            Beantwoorden
+          </button>
+
+          <!-- Inline reply form -->
+          <div
+            class="box mt-3"
+            x-show="replyOpen"
+            x-transition
+            @keydown.escape="replyOpen=false"
+          >
+            <label class="label" for="reply-1">Antwoord</label>
+            <textarea id="reply-1" class="textarea" rows="2"></textarea>
+            <button class="button is-link is-small mt-2">Plaats antwoord</button>
+          </div>
+
+          <!-- LEVEL 2 -->
+          <ol class="comment-thread" role="list">
+            <li class="comment comment-level-2" x-data="{ replyOpen:false }">
+              <header class="mb-2">
+                <p class="has-text-weight-semibold">Sara de Vries</p>
+                <p class="is-size-7 has-text-grey">27 januari 2026, 11:40</p>
+              </header>
+
+              <p class="content">
+                Ik ben het grotendeels met je eens, maar ik zou graag meer voorbeelden zien.
+              </p>
+
+              <button
+                class="button is-small is-light"
+                @click="replyOpen = !replyOpen"
+                :aria-expanded="replyOpen"
+              >
+                Beantwoorden
+              </button>
+
+              <!-- Inline reply form -->
+              <div
+                class="box mt-3"
+                x-show="replyOpen"
+                x-transition
+                @keydown.escape="replyOpen=false"
+              >
+                <label class="label" for="reply-2">Antwoord</label>
+                <textarea id="reply-2" class="textarea" rows="2"></textarea>
+                <button class="button is-link is-small mt-2">Plaats antwoord</button>
+              </div>
+
+              <!-- LEVEL 3 -->
+              <ol class="comment-thread" role="list">
+                <li class="comment comment-level-3" x-data="{ replyOpen:false }">
+                  <header class="mb-2">
+                    <p class="has-text-weight-semibold">Jan Jansen</p>
+                    <p class="is-size-7 has-text-grey">27 januari 2026, 11:45</p>
+                  </header>
+
+                  <p class="content">
+                    Goede suggestie, ik zal later nog een voorbeeld toevoegen.
+                  </p>
+
+                  <button
+                    class="button is-small is-light"
+                    @click="replyOpen = !replyOpen"
+                    :aria-expanded="replyOpen"
+                  >
+                    Beantwoorden
+                  </button>
+
+                  <!-- Inline reply form (max level reached) -->
+                  <div
+                    class="box mt-3"
+                    x-show="replyOpen"
+                    x-transition
+                    @keydown.escape="replyOpen=false"
+                  >
+                    <p class="is-size-7 has-text-grey">
+                      Maximaal niveau bereikt — dit antwoord komt op hetzelfde niveau.
+                    </p>
+                    <label class="label" for="reply-3">Antwoord</label>
+                    <textarea id="reply-3" class="textarea" rows="2"></textarea>
+                    <button class="button is-link is-small mt-2">Plaats antwoord</button>
+                  </div>
+
+                </li>
+              </ol>
+            </li>
+          </ol>
+        </li>
+
+      </ol>
+    </section>
+
+  </div>
+</main>
+
+</body>
+</html>
