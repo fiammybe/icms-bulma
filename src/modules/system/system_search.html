@@ -1,49 +1,97 @@
 <{if $basic_search == false && $search_results }>
-<h1 class="title"><{$label_search_results}>:</h1>
-<h2 class="subtitle"><{$showing}></h2>
-<{foreach from=$module_sort_order key=sort_key item=sort_value}>
-  <div>
-    <b><{$sort_key}></b>: (<{$sort_value}> <{$smarty.const._SR_HITSRETURNED}>)
+<section class="section" role="region" aria-labelledby="search-results-heading">
+  <div class="container">
+    <h1 id="search-results-heading" class="title is-3"><{$label_search_results}>:</h1>
+    <h2 class="subtitle is-5" aria-live="polite"><{$showing}></h2>
+
+    <{foreach from=$module_sort_order key=sort_key item=sort_value}>
+    <article class="box" role="article" aria-labelledby="result-<{$sort_key|escape}>">
+      <header class="mb-3" id="result-<{$sort_key|escape}>" style="border-left: 4px solid var(--primary); padding-left: .75rem;">
+        <p class="is-size-6 has-text-weight-semibold"><b><{$sort_key}></b>
+          <span class="has-text-grey">(<{$sort_value}> <{$smarty.const._SR_HITSRETURNED}>)</span>
+        </p>
+      </header>
+
+      <{if $search_results[$sort_key].search_more_url != ''}>
+      <p class="mb-3">
+        <a class="button is-small is-light" href="<{$search_results[$sort_key].search_more_url}>" aria-label="<{$search_results[$sort_key].search_more_title}>">
+          <span class="icon" aria-hidden="true"><img src="<{$smarty.const.ICMS_IMAGES_SET_URL}>/actions/find.png" alt="" /></span>
+          <span><{$smarty.const._SR_SHOWALLR}></span>
+        </a>
+      </p>
+      <{/if}>
+
+      <{if $search_results[$sort_key].page_nav != ''}>
+      <nav class="pagination is-small" role="navigation" aria-label="Pagination for <{$sort_key}>">
+        <div class="pagination-container">
+          <{$search_results[$sort_key].page_nav}>
+        </div>
+      </nav>
+      <{/if}>
+
+      <div class="results-list">
+        <{section name=cur_result loop=$search_results[$sort_key].results}>
+        <article class="media" role="article" aria-label="Search result">
+          <figure class="media-left">
+            <p class="image is-64x64">
+              <img src="<{$search_results[$sort_key].results[cur_result].processed_image_url}>" alt="<{$search_results[$sort_key].results[cur_result].processed_image_alt_text|escape}>'" />
+            </p>
+          </figure>
+          <div class="media-content">
+            <div class="content">
+              <p class="title is-6" style="margin-bottom: .25rem;">
+                <a href="<{$search_results[$sort_key].results[cur_result].link}>" class="has-text-dark" style="text-decoration: none;"> <{$search_results[$sort_key].results[cur_result].processed_title|escape}></a>
+              </p>
+              <p class="subtitle is-7 has-text-grey">
+                <a href="<{$search_results[$sort_key].results[cur_result].processed_user_url}>" class="has-text-link"> <{$search_results[$sort_key].results[cur_result].processed_user_name|escape}></a>
+                <span aria-hidden="true">•</span>
+                <time datetime=""><{$search_results[$sort_key].results[cur_result].processed_time}></time>
+              </p>
+              <div class="mt-2">
+                <{$search_results[$sort_key].results[cur_result].processed_image_tag}>
+              </div>
+            </div>
+          </div>
+        </article>
+        <hr class="is-hidden-mobile" />
+        <{/section}>
+      </div>
+
+      <{if $search_results[$sort_key].page_nav != ''}>
+      <nav class="pagination is-centered" role="navigation" aria-label="Pagination for <{$sort_key}>">
+        <div class="pagination-container">
+          <{$search_results[$sort_key].page_nav}>
+        </div>
+      </nav>
+      <{/if}>
+    </article>
+    <{/foreach}>
+
+    <section class="mt-4" aria-labelledby="search-meta">
+      <h3 id="search-meta" class="is-sr-only">Search details</h3>
+
+      <p><strong><{$label_search_type}>:</strong> <span class="tag is-light" role="status"><{$search_type}></span></p>
+
+      <p class="mt-2"><strong><{$label_keywords}>:</strong></p>
+      <div role="list" aria-label="Searched keywords" class="tags are-small mt-2">
+        <{section name=cur_kw_searched loop=$searched_keywords}>
+        <span role="listitem" class="tag is-info has-text-white"><{$searched_keywords[cur_kw_searched]|escape}></span>
+        <{/section}>
+      </div>
+
+      <{if $ignored_keywords}>
+      <p class="mt-3"><strong><{$label_ignored_keywords}>:</strong></p>
+      <div role="list" aria-label="Ignored keywords" class="tags are-small mt-2">
+        <{section name=cur_kw_not_searched loop=$ignored_keywords}>
+        <span role="listitem" class="tag is-warning"><{$ignored_keywords[cur_kw_not_searched]|escape}></span>
+        <{/section}>
+      </div>
+      <{/if}>
+    </section>
+
+    <div class="mt-5">
+      <{$search_form}>
+    </div>
   </div>
-  <{if $search_results[$sort_key].search_more_url != ''}>
-  <a href="<{$search_results[$sort_key].search_more_url}>">
-  <img src="<{$smarty.const.ICMS_IMAGES_SET_URL}>/actions/find.png" alt="<{$search_results[$sort_key].search_more_title}>" /> <{$smarty.const._SR_SHOWALLR}>
-  </a>
-  <{/if}>
-
-  <{if $search_results[$sort_key].page_nav != ''}>
-  <div>
-    <{$search_results[$sort_key].page_nav}>
-  </div>
-  <{/if}>
-
-  <{section name=cur_result loop=$search_results[$sort_key].results}>
-  <{math equation="x + y" x=$smarty.section.cur_result.index y=$start}>
-  <img alt="<{$search_results[$sort_key].results[cur_result].processed_image_alt_text}>" src="<{$search_results[$sort_key].results[cur_result].processed_image_url}>" />
-  <{$search_results[$sort_key].results[cur_result].processed_image_tag}>
-  <b><a href="<{$search_results[$sort_key].results[cur_result].link}>"><{$search_results[$sort_key].results[cur_result].processed_title}></a></b>
-  <a href="<{$search_results[$sort_key].results[cur_result].processed_user_url}>"><{$search_results[$sort_key].results[cur_result].processed_user_name}></a> <{$search_results[$sort_key].results[cur_result].processed_time}>
-  <{/section}>
-
-  <{if $search_results[$sort_key].page_nav != ''}>
-  <div><{$search_results[$sort_key].page_nav}></div>
-  <{/if}>
-<{/foreach}>
-
-<strong><{$label_search_type}> </strong><{$search_type}><br />
-<strong><{$label_keywords}> </strong>
-<{* This section generates a space separated list of keywords that were searched. *}>
-<{section name=cur_kw_searched loop=$searched_keywords}>
-<{$searched_keywords[cur_kw_searched]}><{if $smarty.section.cur_kw_searched.index <> $smarty.section.cur_kw_searched.total}>&nbsp;<{/if}>
-<{/section}><br />
-<{if $ignored_keywords}><{$label_ignored_keywords}>
-<strong>
-  <{* This section generates a space separated list of keywords that were NOT searched. *}>
-  <{section name=cur_kw_not_searched loop=$ignored_keywords}>
-  <{$ignored_keywords[cur_kw_not_searched]}><{if $smarty.section.cur_kw_not_searched.index <> $smarty.section.cur_kw_not_searched.total}>&nbsp;<{/if}>
-  <{/section}>
-</strong><br />
-<{/if}><br />
+</section>
 <{/if}>
-
-<{$search_form}>
