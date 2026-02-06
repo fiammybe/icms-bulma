@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <title>Permissiebeheer per gebruikersgroep</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bulma 1.0.3 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.3/css/bulma.min.css">
+
+  <style>
+    /* Extra focus-styling voor WCAG 2.1 AA */
+    :focus-visible {
+      outline: 3px solid #485fc7;
+      outline-offset: 2px;
+    }
+
+    /* Zorg voor voldoende contrast voor custom elementen indien nodig */
+    .permission-badge {
+      background-color: #363636;
+      color: #fff;
+    }
+
+    /* Mobiel: stapel de kolommen netjes onder elkaar */
+    @media (max-width: 768px) {
+      .sidebar-column {
+        margin-bottom: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body class="has-background-light">
+
+  <header class="section pb-2">
+    <div class="container">
+      <h1 class="title is-3">Permissiebeheer</h1>
+      <p class="subtitle is-6">
+        Beheer permissies per gebruikersgroep, gegroepeerd per module.
+      </p>
+    </div>
+  </header>
+
+  <main class="section pt-2" aria-labelledby="main-title">
+    <div class="container">
+      <h2 id="main-title" class="is-sr-only">Permissies per gebruikersgroep</h2>
+
+      <div class="columns is-variable is-5 is-multiline">
+        <!-- Zijbalk: gebruikersgroepen -->
+        <aside class="column is-12-tablet is-4-desktop sidebar-column" aria-label="Gebruikersgroepen">
+          <div class="box" role="navigation" aria-label="Lijst van gebruikersgroepen">
+            <h3 class="title is-5">Gebruikersgroepen</h3>
+
+            <div class="field">
+              <label class="label" for="group-search">Zoek groep</label>
+              <div class="control has-icons-left">
+                <input
+                  id="group-search"
+                  class="input"
+                  type="search"
+                  placeholder="Zoek op naam"
+                  aria-describedby="group-search-help"
+                >
+                <span class="icon is-left" aria-hidden="true">
+                  🔍
+                </span>
+              </div>
+              <p id="group-search-help" class="help">
+                Typ om de lijst met gebruikersgroepen te filteren.
+              </p>
+            </div>
+
+            <nav>
+              <ul class="menu-list" role="list">
+                <li>
+                  <button
+                    type="button"
+                    class="button is-fullwidth is-justify-content-space-between is-align-items-center mb-2 is-light"
+                    aria-pressed="true"
+                  >
+                    <span>Beheerders</span>
+                    <span class="tag is-info permission-badge" aria-label="Aantal permissies">24</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="button is-fullwidth is-justify-content-space-between is-align-items-center mb-2"
+                  >
+                    <span>Redacteurs</span>
+                    <span class="tag is-info permission-badge" aria-label="Aantal permissies">16</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="button is-fullwidth is-justify-content-space-between is-align-items-center mb-2"
+                  >
+                    <span>Geregistreerde gebruikers</span>
+                    <span class="tag is-info permission-badge" aria-label="Aantal permissies">8</span>
+                  </button>
+                </li>
+                <li>
+                  <button
+                    type="button"
+                    class="button is-fullwidth is-justify-content-space-between is-align-items-center"
+                  >
+                    <span>Gastgebruikers</span>
+                    <span class="tag is-info permission-badge" aria-label="Aantal permissies">3</span>
+                  </button>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </aside>
+
+        <!-- Hoofdcontent: permissies per module -->
+        <section class="column is-12-tablet is-8-desktop" aria-label="Permissies voor geselecteerde gebruikersgroep">
+          <form aria-describedby="permissions-help">
+            <div class="box">
+              <header class="mb-4">
+                <h3 class="title is-4">Permissies voor groep: Beheerders</h3>
+                <p id="permissions-help" class="help">
+                  Vink de acties aan die deze groep mag uitvoeren per module.
+                </p>
+              </header>
+
+              <!-- Module: Gebruikersbeheer -->
+              <fieldset class="mb-5" aria-labelledby="module-users-title">
+                <legend id="module-users-title" class="title is-5 mb-2">
+                  Gebruikersbeheer
+                </legend>
+                <p class="subtitle is-6 mb-3">
+                  Beheer gebruikers, rollen en aanmeldingen.
+                </p>
+
+                <div class="table-container">
+                  <table class="table is-fullwidth is-striped is-hoverable" role="grid">
+                    <thead>
+                      <tr>
+                        <th scope="col">Permissie</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col" class="has-text-centered">Toegestaan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-users-view" class="label is-inline">
+                            Gebruikers bekijken
+                          </label>
+                        </th>
+                        <td>
+                          Toegang tot de lijst met gebruikers en detailpagina’s.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-users-view"
+                              name="perm-users-view"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Gebruikers bekijken toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-users-edit" class="label is-inline">
+                            Gebruikers bewerken
+                          </label>
+                        </th>
+                        <td>
+                          Profielen aanpassen, wachtwoorden resetten en rollen wijzigen.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-users-edit"
+                              name="perm-users-edit"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Gebruikers bewerken toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-users-delete" class="label is-inline">
+                            Gebruikers verwijderen
+                          </label>
+                        </th>
+                        <td>
+                          Gebruikers permanent verwijderen uit het systeem.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-users-delete"
+                              name="perm-users-delete"
+                              type="checkbox"
+                            >
+                            <span class="is-sr-only">Gebruikers verwijderen toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </fieldset>
+
+              <!-- Module: Content -->
+              <fieldset class="mb-5" aria-labelledby="module-content-title">
+                <legend id="module-content-title" class="title is-5 mb-2">
+                  Content
+                </legend>
+                <p class="subtitle is-6 mb-3">
+                  Beheer pagina’s, nieuwsberichten en media.
+                </p>
+
+                <div class="table-container">
+                  <table class="table is-fullwidth is-striped is-hoverable" role="grid">
+                    <thead>
+                      <tr>
+                        <th scope="col">Permissie</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col" class="has-text-centered">Toegestaan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-content-view" class="label is-inline">
+                            Content bekijken
+                          </label>
+                        </th>
+                        <td>
+                          Toegang tot alle gepubliceerde en conceptcontent.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-content-view"
+                              name="perm-content-view"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Content bekijken toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-content-edit" class="label is-inline">
+                            Content bewerken
+                          </label>
+                        </th>
+                        <td>
+                          Bestaande pagina’s en berichten aanpassen.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-content-edit"
+                              name="perm-content-edit"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Content bewerken toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-content-publish" class="label is-inline">
+                            Content publiceren
+                          </label>
+                        </th>
+                        <td>
+                          Concepten publiceren en gepubliceerde content offline halen.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-content-publish"
+                              name="perm-content-publish"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Content publiceren toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </fieldset>
+
+              <!-- Module: Rapportage -->
+              <fieldset class="mb-5" aria-labelledby="module-reports-title">
+                <legend id="module-reports-title" class="title is-5 mb-2">
+                  Rapportage
+                </legend>
+                <p class="subtitle is-6 mb-3">
+                  Bekijk en exporteer rapporten.
+                </p>
+
+                <div class="table-container">
+                  <table class="table is-fullwidth is-striped is-hoverable" role="grid">
+                    <thead>
+                      <tr>
+                        <th scope="col">Permissie</th>
+                        <th scope="col">Beschrijving</th>
+                        <th scope="col" class="has-text-centered">Toegestaan</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-reports-view" class="label is-inline">
+                            Rapporten bekijken
+                          </label>
+                        </th>
+                        <td>
+                          Toegang tot standaardrapporten en dashboards.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-reports-view"
+                              name="perm-reports-view"
+                              type="checkbox"
+                              checked
+                            >
+                            <span class="is-sr-only">Rapporten bekijken toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">
+                          <label for="perm-reports-export" class="label is-inline">
+                            Rapporten exporteren
+                          </label>
+                        </th>
+                        <td>
+                          Rapporten exporteren naar CSV of PDF.
+                        </td>
+                        <td class="has-text-centered">
+                          <label class="checkbox">
+                            <input
+                              id="perm-reports-export"
+                              name="perm-reports-export"
+                              type="checkbox"
+                            >
+                            <span class="is-sr-only">Rapporten exporteren toestaan</span>
+                          </label>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </fieldset>
+
+              <div class="field is-grouped is-justify-content-flex-end">
+                <div class="control">
+                  <button type="submit" class="button is-primary">
+                    Wijzigingen opslaan
+                  </button>
+                </div>
+                <div class="control">
+                  <button type="reset" class="button is-light">
+                    Annuleren
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
