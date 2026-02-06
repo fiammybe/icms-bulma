@@ -1,134 +1,203 @@
+<{php}>
+if( ! empty( $_SESSION['redirect_message'] ) ) {
+$this->_tpl_vars['site_msg'] = $_SESSION['redirect_message'];
+unset( $_SESSION['redirect_message'] ) ;
+}
+<{/php}>
+
+<!-- define current_page, we will filter what to show in the left menu-bar based on this -->
+<{assign var=current_page value=`$smarty.server.HTTP_HOST``$smarty.server.REQUEST_URI`}>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<{$icms_langcode}>">
 <head>
+	<!-- Center block custom positioning -->
+	<{* Center blocks display order
+	valid values are:  lrc (left right / center) lcr (left center right) clr (center / left right)
+	*}>
+	<{assign var=theme_top_order value=lrc}>
+	<{assign var=theme_bottom_order value=lcr}>
+
+	<!-- Theme name -->
 	<{assign var=theme_name value=$xoTheme->folderName}>
-	<meta charset="utf-8" >
-	<title><{$icms_sitename}></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="<{$icms_charset}>" >
+<title><{$smarty.const._IMPRESSCMS_ADMIN}> <{$icms_sitename}></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<meta name="robots" content="<{$icms_meta_robots}>" />
-	<meta name="keywords" content="<{$icms_meta_keywords}>" />
-	<meta name="description" content="<{$icms_meta_description}>" />
-	<meta name="rating" content="<{$icms_meta_rating}>" />
-	<meta name="author" content="<{$icms_meta_author}>" />
-	<meta name="copyright" content="<{$icms_meta_copyright}>" />
-	<meta name="generator" content="ImpressCMS" />
+<meta name="robots" content="<{$icms_meta_robots}>" />
+<meta name="keywords" content="<{$icms_meta_keywords}>" />
+<meta name="description" content="<{$icms_meta_description}>" />
+<meta name="rating" content="<{$icms_meta_rating}>" />
+<meta name="author" content="<{$icms_meta_author}>" />
+<meta name="copyright" content="<{$icms_meta_copyright}>" />
+<meta name="generator" content="ImpressCMS" />
 
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/ico" href="<{xoImgUrl icons/favicon.ico}>" />
-	<link rel="icon" type="image/png" href="<{xoImgUrl icons/icon.png}>" />
+<!-- Favicon -->
+<link rel="shortcut icon" type="image/ico" href="<{xoImgUrl icons/favicon.ico}>" />
+<link rel="icon" type="image/png" href="<{xoImgUrl icons/icon.png}>" />
 
-	<!-- Module Header -->
-	<{$icms_module_header}>
+<!-- Module Header -->
+<{$icms_module_header}>
 
-	<!-- Tailwind CSS -->
-	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<!-- Bulma CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/1.0.2/css/bulma.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-	<!-- AlpineJS with Collapse plugin -->
-	<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<!-- AlpineJS with Collapse plugin -->
+<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
 </head>
 <body id="<{$icms_dirname}>">
-<div class="wrapper">
-	<nav class="navbar fixed top-0 w-full bg-white shadow-lg z-10">
-		<div class="container px-4 mx-auto flex justify-between items-center py-3">
-			<a href="./index_admin.html" class="flex items-center text-gray-800 hover:text-gray-700">
-				<img src="./assets/img/logo.svg" alt="ImpressCMS logo" width="112" height="28" class="mr-2">
-				ImpressCMS
+<div class="wrapper"><nav class="navbar" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<{if $adm_left_logo == ''}>&nbsp;<{else}>
+		<{if  $adm_left_logo_url != ''}>
+		<a class="navbar-item" href="<{$adm_left_logo_url}>" title="<{if $adm_left_logo_alt != ''}><{$adm_left_logo_alt}><{else}>ImpressCMS<{/if}>">
+			<{/if}>
+			<img width="112" height="28" src="<{$icms_url}><{$adm_left_logo}>" alt="<{if $adm_left_logo_alt != ''}><{$adm_left_logo_alt}><{else}>ImpressCMS<{/if}>"/>
+			<{if  $adm_left_logo_url != ''}>
+		</a>
+		<{/if}>
+		<{/if}>
+
+		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+
+	<div id="navbarTop" class="navbar-menu">
+		<div class="navbar-start">
+			<{foreach item=item from=$navitems}>
+			<a class="navbar-item" href="<{$item.link}>">
+				<{$item.text}>
 			</a>
+			<{/foreach}>
 
-			<div id="navbarBasicExample" class="hidden md:flex space-x-4">
-				<a href="#" class="text-gray-800 hover:text-gray-700">Home</a>
-				<a href="#" class="text-gray-800 hover:text-gray-700">Documentation</a>
-				<div x-data="{ open: false }" @mouseover="open = true" @mouseleave="open = false">
-					<button type="button" class="text-gray-800 hover:text-gray-700 focus:outline-none">
-						More
-					</button>
-					<div v-if="open" class="absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-100 w-48">
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">About</a>
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Jobs</a>
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Contact</a>
-						<hr class="border-t border-gray-100">
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Report an issue</a>
-					</div>
-				</div>
-			</div>
-
-			<div class="md:hidden flex items-center space-x-4">
-				<button type="button" class="text-gray-800 hover:text-gray-700 focus:outline-none">
-					More
-				</button>
-				<a href="#" class="text-gray-800 hover:text-gray-700">Sign up</a>
-				<a href="#" class="text-gray-800 hover:text-gray-700">Log in</a>
-
-				<div x-data="{ mobileMenu: false }">
-					<button @click="mobileMenu = !mobileMenu" type="button"
-					        class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:bg-gray-100 focus:text-gray-600">
-						<span class="sr-only">Open main menu</span>
-						<svg :class="[mobileMenu ? 'transform rotate-90' : '', 'h-6 w-6']" xmlns="http://www.w3.org/2000/svg"
-						     fill="none" viewBox="0 0 24 24" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							      d="M4 6h16M4 12h16m-7 6h7"/>
-						</svg>
-					</button>
-
-					<div v-if="mobileMenu"
-					     class="absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-100 w-48">
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Home</a>
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Documentation</a>
-						<div x-data="{ open: false }" @mouseover="open = true" @mouseleave="open = false">
-							<button type="button" class="text-gray-800 hover:text-gray-700 focus:outline-none w-full text-left">
-								More
-							</button>
-							<div v-if="open"
-							     class="absolute right-0 mt-2 bg-white shadow-lg rounded-md divide-y divide-gray-100 w-48">
-								<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">About</a>
-								<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Jobs</a>
-								<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Contact</a>
-								<hr class="border-t border-gray-100">
-								<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Report an issue</a>
-							</div>
-						</div>
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Sign up</a>
-						<a href="#" class="block px-4 py-2 text-sm hover:bg-gray-100">Log in</a>
-					</div>
-				</div>
-			</div>
 		</div>
-	</nav>
 
-	<div class="container mx-auto pt-8">
-		<div class="grid grid-cols-5 gap-4">
-			<aside class="col-span-1">
-				<div x-data="{ openLevel2: null, openLevel3: null }">
-					<{include file="$theme_name/templates/adminmenu.html.tpl"}>
-
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="buttons">
+					<a class="button is-primary">
+						<strong>Sign up</strong>
+					</a>
 				</div>
-			</aside>
-			<section class="col-span-4">
-				<!-- Center column / page -->
-				<{includeq file="$theme_name/content.html" content=$icms_contents}>
-			</section>
+			</div>
 		</div>
 	</div>
+</nav>
+<div class="columns">
+	<div class="column is-one-fifth is-hidden-touch">
+		<section class="section">
+			<div x-data="{ mobileMenu: false, openLevel2: null, openLevel3: null, openLevel4: null }">
+
+    <!-- Mobile toggle button -->
+    <button
+        class="button is-small is-primary is-hidden-tablet mb-2"
+        @click="mobileMenu = !mobileMenu"
+    >
+        Menu
+    </button>
+
+    <!-- Desktop menu: always visible on desktop -->
+    <aside class="menu is-hidden-mobile">
+        <{include file="$theme_name/templates/adminmenu.html.tpl"}>
+    </aside>
+
+    <!-- Mobile menu: toggled, only visible on tablet/mobile -->
+    <aside
+        class="menu is-hidden-tablet"
+        :class="{ 'is-hidden': !mobileMenu }"
+    >
+        <{include file="$theme_name/templates/adminmenu.html.tpl"}>
+    </aside>
+
+</div>
+		</section>
+	</div>
+	<div class="column">
+		<{if $xoBlocks.canvas_right_admin || $xoBlocks.canvas_left_admin || $xoBlocks.page_topleft_admin || $xoBlocks.page_topcenter_admin || $xoBlocks.page_topright_admin}>
+			<section class="section">
+				<div class="container">
+					<!-- Left column -->
+					<{if $icms_rtl}>
+						<{if $xoBlocks.canvas_right_admin}>
+							<{includeq file="$theme_name/templates/blockszone.html" blocks=$xoBlocks.canvas_right_admin zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'}>
+						<{/if}>
+					<{else}>
+						<{if $xoBlocks.canvas_left_admin}>
+							<{includeq file="$theme_name/templates/blockszone.html" blocks=$xoBlocks.canvas_left_admin zoneClass='xo-canvas-column' zoneId='xo-canvas-leftcolumn'}>
+						<{/if}>
+					<{/if}>
+					<!-- Center column / page -->
+					<!-- Top blocks -->
+					<{if $xoBlocks.page_topleft_admin or $xoBlocks.page_topcenter_admin or $xoBlocks.page_topright_admin}>
+						<div class="xo-blockszone xo-<{$theme_top_order}>pageblocks" id="xo-page-topblocks">
+							<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:0:1}>
+							<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:1:1}>
+							<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=top lcr=$theme_top_order|substr:2:1}>
+						</div>
+					<{/if}>
+				</div>
+			</section>
+		<{/if}>
+
+		<{if $icms_contents}>
+			<section>
+				<div class="container">
+					<div id="xo-content"><{$icms_contents}></div>
+				</div>
+			</section>
+		<{/if}>
+
+		<{if $xoBlocks.page_bottomleft_admin || $xoBlocks.page_bottomcenter_admin || $xoBlocks.page_bottomright_admin || $xoBlocks.canvas_left_admin || $xoBlocks.canvas_right_admin}>
+			<section class="section">
+				<div class="container">
+						<!-- Bottom blocks -->
+						<{if $xoBlocks.page_bottomleft_admin or $xoBlocks.page_bottomcenter_admin or $xoBlocks.page_bottomright_admin}>
+							<div class="xo-blockszone xo-<{$theme_bottom_order}>pageblocks" id="xo-page-bottomblocks">
+								<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:0:1}>
+								<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:1:1}>
+								<{includeq file="$theme_name/templates/centerblocks_admin.html" topbottom=bottom lcr=$theme_bottom_order|substr:2:1}>
+							</div>
+						<{/if}>
+
+					<!-- Right column -->
+					<{if $icms_rtl}>
+						<{if $xoBlocks.canvas_left_admin}>
+							<{includeq file="$theme_name/templates/blockszone.html" blocks=$xoBlocks.canvas_left_admin zoneClass='xo-canvas-column' zoneId='xo-canvas-leftcolumn'}>
+						<{/if}>
+					<{else}>
+						<{if $xoBlocks.canvas_right_admin}>
+							<{includeq file="$theme_name/templates/blockszone.html" blocks=$xoBlocks.canvas_right_admin	zoneClass='xo-canvas-column' zoneId='xo-canvas-rightcolumn'}>
+						<{/if}>
+					<{/if}>
+				</div>
+			</section>
+		<{/if}>
+</div>
 </div>
 
-<footer class="bg-gray-800 text-white py-4 mt-8 text-center">
-	<p>&copy; 2019 David Janssens.</p>
+<footer class="footer">
+	<div class="content has-text-centered">
+		<{$icms_footadm}>
+	</div>
 </footer>
 </div>
 <script>
-    $(document).ready(function() {
+	$(document).ready(function() {
 
-        // Check for click events on the navbar burger icon
-        $(".navbar-burger").click(function() {
+// Check for click events on the navbar burger icon
+$(".navbar-burger").click(function() {
 
-            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-            $(".navbar-burger").toggleClass("is-active");
-            $(".navbar-menu").toggleClass("is-active");
+  // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+  $(".navbar-burger").toggleClass("is-active");
+  $(".navbar-menu").toggleClass("is-active");
 
-        });
-    });
-</script>
+});
+});
+		</script>
 </body>
 </html>
