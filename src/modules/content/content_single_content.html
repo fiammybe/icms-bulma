@@ -4,7 +4,7 @@
       <div class="is-sr-only">User can edit or delete this item</div>
     <{/if}>
 
-    <div class="content{if $content_content.userCanEditAndDelete} im-block{/if}">
+    <div class="content<{if $content_content.userCanEditAndDelete}> im-block<{/if}>">
       <div class="column">
         <{if $showInfo}><div class="content_content_info"> <{$content_content.content_info}></div><{/if}>
         <div class="content_content_body"> <{$content_content.content_body}></div>

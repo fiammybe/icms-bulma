@@ -11,16 +11,23 @@
 		</div>
 		<div id="navbarSite" class="navbar-menu">
 		<{if $xoBlocks.menu_block_left}>
-		<div class="navbar-start">
-			<<{foreach item=block from=$xoBlocks.menu_block_left name=menu}>
-			<{$block.content} aria-label="<{$block.caption}>">
-			<{/foreach}>
-		</div>
+			<div class="navbar-start">
+				<{foreach item=block from=$xoBlocks.menu_block_left name=menu}>
+					<div class="navbar-item" role="presentation">
+						<{$block.content}>
+						<span class="visually-hidden"><{$block.caption}></span>
+					</div>
+					<{/foreach}>
+				</div>
 		<{else}>
-		<div class="navbar-end">
-			<<{foreach item=block from=$xoBlocks.menu_block_right name=menu}>
-			<{$block.content} aria-label="<{$block.caption}>">
-			<{/foreach}>
-		</div>
+			<div class="navbar-end">
+				<{foreach item=block from=$xoBlocks.menu_block_right name=menu}>
+					<div class="navbar-item" role="presentation">
+						<{$block.content}>
+						<span class="visually-hidden"><{$block.caption}></span>
+					</div>
+					<{/foreach}>
+				</div>
 		<{/if}>
+		</div>
 </nav>
