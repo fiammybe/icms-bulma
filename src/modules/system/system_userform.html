@@ -1,6 +1,6 @@
 <{assign var=theme_name value=$xoTheme->folderName}>
 <{if $lang_reset !== 1}>
-<div style="position: relative;">
+<div class="position-relative">
 	<div>
 		<fieldset>
 			<legend><{$lang_login}></legend>
@@ -39,7 +39,7 @@
 			</div>
 			<a name="lost"></a>
 			<{if $allow_registration }>
-			<div style="text-align: <{$smarty.const._GLOBAL_RIGHT}>;"><{$lang_notregister}><br /></div>
+			<div class="has-text-right"><{$lang_notregister}><br /></div>
 			<{/if}>
 		</fieldset>
 	</div>
@@ -67,10 +67,10 @@
 	</div>
 </div>
 <{else}>
-<div style="position: relative;height: 250px;">
-	<div style="float: <{$smarty.const._GLOBAL_LEFT}>; width: 80% ">
-		<fieldset style="padding: 10px;">
-			<legend style="font-weight: bold;"><{$smarty.const._US_RESETPASSWORD}></legend>
+<div class="position-relative height-250">
+	<div class="is-pulled-left w-80">
+		<fieldset class="fieldset-pad">
+			<legend class="has-text-weight-bold"><{$smarty.const._US_RESETPASSWORD}></legend>
 			<h1 class="title"><{$smarty.const._US_RESETPASSTITLE}></h1>
 			<div><{$smarty.const._US_RESETPASSINFO}></div>
 			<form action="resetpass.php" method="post">

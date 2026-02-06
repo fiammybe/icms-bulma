@@ -1,19 +1,58 @@
 <{includeq file='db:content_header.html'}>
-<{foreach item=content_content from=$content_contents}>
-<div class="content_content_container">
-	<h1 class="content_content_title"><{$content_content.itemLink}> <{if $content_content.userCanEditAndDelete}><{$content_content.editItemLink}><{$content_content.deleteItemLink}><{/if}></h1>
-	<{if $showInfo}><div class="content_content_info"><{$content_content.content_info}></div><{/if}>
-	<div class="content_content_body"><{$content_content.content_lead}></div>
-	<div class="content_admin_links">
-		<{if $content_content.content_tags}>
-		<div class="content_content_tags">
-			<strong><{$smarty.const._CO_CONTENT_CONTENT_CONTENT_TAGS}>:</strong> <{$content_content.content_tags}>
-		</div>
-		<{/if}>
-		<div class="content_content_comments"><{$content_content.content_comment_info}></div>
-		<div style="clear: left"></div>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<section class="section" aria-labelledby="page-heading">
+	<div class="container">
+		<main id="main-content" role="main" aria-label="Content" class="content">
+			<h1 id="page-heading" class="visually-hidden">Content</h1>
+
+			<{foreach item=content_content from=$content_contents}>
+			<article class="box" role="article">
+				<header class="" role="heading" aria-level="2">
+					<h2 class="title is-4">
+						<{$content_content.itemLink}>
+						<{if $content_content.userCanEditAndDelete}>
+							<span class="is-pulled-right" aria-hidden="false">
+								<{$content_content.editItemLink} aria-label="Edit content item">
+								<{$content_content.deleteItemLink} aria-label="Delete content item">
+							</span>
+						<{/if}>
+					</h2>
+					<{if $showInfo}><p class="subtitle is-6"><{$content_content.content_info}></p><{/if}>
+				</header>
+
+				<div class="content">
+					<{$content_content.content_lead}>
+				</div>
+
+				<footer class="mt-4" aria-label="Content metadata">
+					<div class="columns is-mobile is-multiline is-vcentered">
+						<div class="column is-narrow">
+							<{if $content_content.content_tags}>
+								<nav class="tags" aria-label="Tags">
+									<strong class="mr-2"> <{$smarty.const._CO_CONTENT_CONTENT_CONTENT_TAGS}>:</strong>
+									<span class="tag is-light"> <{$content_content.content_tags}></span>
+								</nav>
+							<{/if}>
+						</div>
+						<div class="column">
+							<div class="content_content_comments"> <{$content_content.content_comment_info}></div>
+						</div>
+					</div>
+				</footer>
+			</article>
+			<{/foreach}>
+
+			<{if $navbar}>
+			<nav class="pagination is-centered" role="navigation" aria-label="Pagination">
+				<div class="pagination-list">
+					<{$navbar}>
+				</div>
+			</nav>
+			<{/if}>
+		</main>
 	</div>
-</div>
-<{/foreach}>
-<{if $navbar}><div id="content_navbar">Pages: <{$navbar}></div><{/if}>
+</section>
+
 <{includeq file='db:content_footer.html'}>

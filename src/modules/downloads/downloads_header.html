@@ -1,8 +1,9 @@
 <{if $downloads_show_rss}>
-	<div class="row">
-		<a href="<{$downloads_url}>rss.php" title="RSS-Feeds">
-			<i class="icon-custom rounded-x icon-sm icon-bg-u icon-feed"></i>
+	<div class="row" role="region" aria-label="Downloads RSS">
+		<a href="<{$downloads_url}>rss.php" title="RSS-Feeds" aria-label="RSS feed for downloads">
+			<i class="icon-custom rounded-x icon-sm icon-bg-u icon-feed" aria-hidden="true"></i>
+			<span class="visually-hidden">RSS feed</span>
 		</a>
 	</div>
 <{/if}>
-	<div>bla</div>
+<div>bla</div>

@@ -13,9 +13,9 @@
         </div>
     <{/if}>
 </div>
-<div class="content has-text-centered">
+<div class="content has-text-centered" role="footer">
     <p><{$icms_footer}></p>
-    <p><a href="https://bulma.io">
+    <p><a href="https://bulma.io" role="menuitem">
             <img
                     src="https://bulma.io/assets/images/made-with-bulma--semiblack.png"
                     alt="Made with Bulma"

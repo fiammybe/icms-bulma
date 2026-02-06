@@ -28,7 +28,7 @@
   <{foreach item=module from=$modules}>
     <tr valign='middle'class="<{cycle values="even,odd"}>">
       <td align="<{$smarty.const._GLOBAL_LEFT}>" valign="middle">
-        <div id="modlogo" style="float: <{$smarty.const._GLOBAL_LEFT}>; padding: 2px;">
+        <div id="modlogo" class="modlogo-left">
           <{if $module.hasadmin == 1 && $module.isactive == '1'}>
             <a href="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.adminindex}>">
               <img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" title="<{$module.name}>" border="0" />
@@ -37,7 +37,7 @@
             <img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" title="<{$module.name}>" border="0" />
           <{/if}> 
         </div>
-        <div id="modlogo" style="float: <{$smarty.const._GLOBAL_LEFT}>; padding-top: 2px;">
+        <div id="modlogo" class="is-pulled-left modlogo">
           <b><{$lang_modulename}>: </b><{$module.name}><br />
           <b><{$lang_moduletitle}>: </b><input type="text" name="newname[<{$module.mid}>]" value="<{$module.title}>" maxlength="150" size="30" />
         </div>
@@ -109,8 +109,8 @@
   <{foreach item=module from=$avmodules}>
     <tr valign='middle'class="<{cycle values="even,odd"}>">
       <td>
-        <div id="modlogo" style="padding: 2px;"><img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" alt="<{$module.name}>" border="0" /> </div>
-	    <div id="modlogo" style="padding-top: 10px;"> <b><{$lang_modulename}>: </b><{$module.name}><br /> </div>
+        <div id="modlogo" class="modlogo"><img src="<{$xoops_url}>/modules/<{$module.dirname}>/<{$module.image}>" alt="<{$module.name}>" border="0" /> </div>
+      	<div id="modlogo" class="modlogo-top"> <b><{$lang_modulename}>: </b><{$module.name}><br /> </div>
       </td>
       <td align='center'><{$module.version}></td>
       <td align='center'><{$module.status}></td>

@@ -14,3 +14,24 @@
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }
+
+/* Accessibility helpers (shared) */
+.skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+.skip-link:focus{position:static;left:auto;width:auto;height:auto;padding:.5rem;background:#fff;border:2px solid #000;z-index:1000}
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+/* Bulma already provides .is-sr-only; keep alias for clarity */
+.is-sr-only{border:none!important;clip:rect(0,0,0,0)!important;height:.01em!important;overflow:hidden!important;padding:0!important;position:absolute!important;white-space:nowrap!important;width:.01em!important}
+
+/* Utility classes moved from inline templates */
+.position-relative{position:relative}
+.height-250{height:250px}
+.w-80{width:80%}
+.fieldset-pad{padding:10px}
+.va-middle{vertical-align:middle}
+.thread-nav{margin:3px;padding:5px}
+.modlogo-left{float:left;padding:2px}
+.modlogo{padding:2px}
+.modlogo-top{padding-top:10px}
+.notice-box{width:85%;background-color:#f7e6bd;color:#222222;text-align:center;border:1px solid #DDDDFF;font-weight:bold;padding:10px;margin:0 auto}
+.panel-box{width:270px;border:1px solid #DDDDFF;padding:0.75rem;margin:0 auto}
+.panel-header{background-color:#f3ac03;font-weight:bold;font-size:1.2em;color:#fff;height:24px;display:flex;align-items:center;justify-content:center}

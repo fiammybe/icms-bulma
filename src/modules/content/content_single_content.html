@@ -1,40 +1,46 @@
 <{if $content_content}>
-<{if $content_content.userCanEditAndDelete}>
-<div>UserCanEditAndDelete</div>
-<{/if}>
-<div class="content<{if $content_content.userCanEditAndDelete}> im-block<{/if}>">
-  <div class="column">
-    <{if $showInfo}><div class="content_content_info"><{$content_content.content_info}></div><{/if}>
-    <div class="content_content_body"><{$content_content.content_body}></div>
-  </div>
-  <{if $showSubs && $content_content.content_hassubs}>
-  <h2 class="is-size-2"><{$smarty.const._MD_CONTENT_SUBS}></h2>
-  <div class="columns">
-    <{foreach item=sub from=$content_content.content_subs}>
-    <div class="column is-3 is-flex">
-      <a href="<{$sub.itemUrl}>">
-        <div class="card">  
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <{assign var='header_image' value="`$icms_url`/uploads/content/content/`$sub.content_header_image`"}>
-          <{resized_image file="`$header_image`" height=224 width=358 fit="inside" class="wide"}>
-            </figure>
-          </div>
-          <div class="card-content">
-            <div class="media">
-              <div class="media-content">
-                <p class="title is-4"><{$sub.itemLink}></p>
+  <article role="article" aria-label="Content item" class="box">
+    <{if $content_content.userCanEditAndDelete}>
+      <div class="is-sr-only">User can edit or delete this item</div>
+    <{/if}>
+
+    <div class="content{if $content_content.userCanEditAndDelete} im-block{/if}">
+      <div class="column">
+        <{if $showInfo}><div class="content_content_info"> <{$content_content.content_info}></div><{/if}>
+        <div class="content_content_body"> <{$content_content.content_body}></div>
+      </div>
+
+      <{if $showSubs && $content_content.content_hassubs}>
+        <section aria-labelledby="subs-heading" class="mt-4">
+          <h3 id="subs-heading" class="is-size-5"> <{$smarty.const._MD_CONTENT_SUBS}></h3>
+          <div class="columns is-multiline">
+            <{foreach item=sub from=$content_content.content_subs}>
+              <div class="column is-3 is-flex">
+                <a href="<{$sub.itemUrl}>" aria-label="View <{$sub.title|default:$sub.itemLink}>">
+                  <div class="card" role="group" aria-label="Related content">
+                    <div class="card-image">
+                      <figure class="image is-4by3">
+                        <{assign var='header_image' value="`$icms_url`/uploads/content/content/`$sub.content_header_image`"}>
+                        <{resized_image file="`$header_image`" height=224 width=358 fit="inside" class="wide"}>
+                      </figure>
+                    </div>
+                    <div class="card-content">
+                      <div class="media">
+                        <div class="media-content">
+                          <p class="title is-6"> <{$sub.itemLink}></p>
+                        </div>
+                      </div>
+                      <div class="content">
+                        <{$sub.content_body|truncate:100:"...":false}>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
-            </div>
-            <div class="content">
-              <{$sub.content_body|truncate:100:"...":false}>
-            </div>
-          </div>                  
-        </div>
-      </a>
+            <{/foreach}>
+          </div>
+        </section>
+      <{/if}>
     </div>
-    <{/foreach}>
-  </div>
-  <{/if}>
-</div>
+  </article>
 <{/if}>

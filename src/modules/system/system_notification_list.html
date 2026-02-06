@@ -1,7 +1,7 @@
 <div class="container">
   <h4 class="title is-4"><{$lang_activenotifications}></h4>
 
-  <p><a href="<{$icms_url}>/userinfo.php?uid=<{$user.uid}>" title="<{$user.name}>"><{$smarty.const._PROFILE}></a>&nbsp;<span style="font-weight:bold;">&raquo;&raquo;</span>&nbsp;<{$smarty.const._MB_SYSTEM_NOTIF}> </p>
+  <p><a href="<{$icms_url}>/userinfo.php?uid=<{$user.uid}>" title="<{$user.name}>"><{$smarty.const._PROFILE}></a>&nbsp;<strong>&raquo;&raquo;</strong>&nbsp;<{$smarty.const._MB_SYSTEM_NOTIF}> </p>
   <form id="notificationlist" action="notifications.php" method="post">
     <div class="columns is-multiline">
       <div class="column is-1"><input name="allbox" id="allbox" onclick="xoopsCheckAll('notificationlist', 'allbox');" type="checkbox" value="<{$lang_checkall}>" /></div>

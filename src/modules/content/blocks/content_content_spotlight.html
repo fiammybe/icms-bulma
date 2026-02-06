@@ -1,10 +1,12 @@
 <{if $block.content_content}>
-	<p><{$block.content_content.spotlight_text}></p>
+  <div role="region" aria-label="Spotlight content" class="content">
+    <p><{$block.content_content.spotlight_text}></p>
 
-	<a class="button <{cycle values="is-link,is-primary,is-info,is-danger"}>" href="<{$icms_url}>/modules/content/content.php?content_id=<{$block.content_content.content_id}>">
-  <span class="icon is-large">
-      <i class="fas fa-arrow-alt-circle-right"></i>
-    </span>  
-  </a>
-
+    <a class="button <{cycle values="is-link,is-primary,is-info,is-danger"}>" href="<{$icms_url}>/modules/content/content.php?content_id=<{$block.content_content.content_id}>" aria-label="Read more about spotlight content">
+      <span class="icon is-large" aria-hidden="true">
+        <i class="fas fa-arrow-alt-circle-right"></i>
+      </span>
+      <span class="visually-hidden">Read more</span>
+    </a>
+  </div>
 <{/if}>

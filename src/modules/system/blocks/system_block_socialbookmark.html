@@ -4,10 +4,11 @@
 	<div class="level-item has-text-centered">
 		<div>
 			<p class="header">
-				<a href="<{$provider.link}>" rel="nofollow" title="<{$provider.title}>">
-				<span class="icon is-large">
-	  				<i class="fab fa-2x fa-<{$provider.image|substr:0:$dot_at}>"></i>
+				<a href="<{$provider.link}>" rel="nofollow noopener" title="<{$provider.title}>" aria-label="Share on <{$provider.title}>">
+				<span class="icon is-large" aria-hidden="true">
+					<i class="fab fa-2x fa-<{$provider.image|substr:0:$dot_at}>"></i>
 				</span>
+				<span class="visually-hidden"><{$provider.title}></span>
 				</a>
 			</p>
 <!--			<p class="title">

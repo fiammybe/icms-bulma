@@ -9,8 +9,8 @@
 </table>
 
 <{if $show_threadnav == true}>
-<div style="text-align:<{$smarty.const._GLOBAL_LEFT}>; margin:3px; padding: 5px;">
-<a href="<{$comment_url}>" title="<{$lang_top}>"><{$lang_top}></a> | <a href="<{$comment_url}>&amp;com_id=<{$comments[i].pid}>&amp;com_rootid=<{$comments[i].rootid}>#newscomment<{$comments[i].pid}>" title="<{$lang_parent}>"><{$lang_parent}></a>
+<div class="thread-nav has-text-left">
+  <a href="<{$comment_url}>" title="<{$lang_top}>"><{$lang_top}></a> | <a href="<{$comment_url}>&amp;com_id=<{$comments[i].pid}>&amp;com_rootid=<{$comments[i].rootid}>#newscomment<{$comments[i].pid}>" title="<{$lang_parent}>"><{$lang_parent}></a>
 </div>
 <{/if}>
 

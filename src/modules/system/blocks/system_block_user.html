@@ -1,20 +1,21 @@
 <div class="navbar-item has-dropdown is-hoverable" id="usermenu">
-    <a class="navbar-link"  title="User">
-        User
+    <a class="navbar-link" role="button" aria-haspopup="true" aria-expanded="false" title="User">
+        <span class="visually-hidden">User menu</span>
+        <span aria-hidden="true">User</span>
     </a>
-    <div class="navbar-dropdown is-right">
+    <div class="navbar-dropdown is-right" role="menu" aria-label="User menu">
         <{if $xoops_isadmin}>
-        <a class="navbar-item" href="<{$xoops_url}>/admin.php" title="<{$block.lang_adminmenu}>"><{$block.lang_adminmenu}></a>
-        <a class="navbar-item" href="<{$xoops_url}>/user.php" title="<{$block.lang_youraccount}>"><{$block.lang_youraccount}></a>
+            <a class="navbar-item" href="<{$xoops_url}>/admin.php" title="<{$block.lang_adminmenu}>" role="menuitem"><{$block.lang_adminmenu}></a>
+            <a class="navbar-item" href="<{$xoops_url}>/user.php" title="<{$block.lang_youraccount}>" role="menuitem"><{$block.lang_youraccount}></a>
         <{else}>
-        <a class="navbar-item" href="<{$xoops_url}>/user.php" title="<{$block.lang_youraccount}>"><{$block.lang_youraccount}></a>
+            <a class="navbar-item" href="<{$xoops_url}>/user.php" title="<{$block.lang_youraccount}>" role="menuitem"><{$block.lang_youraccount}></a>
         <{/if}>
-        <a class="navbar-item" href="<{$xoops_url}>/notifications.php" title="<{$block.lang_notifications}>"><{$block.lang_notifications}></a>
+        <a class="navbar-item" href="<{$xoops_url}>/notifications.php" title="<{$block.lang_notifications}>" role="menuitem"><{$block.lang_notifications}></a>
         <{if $block.new_messages > 0}>
-        <a class="navbar-item" href="<{$xoops_url}>/viewpmsg.php" title="<{$block.lang_inbox}>"><{$block.lang_inbox}> (<{$block.new_messages}>)</a>
+            <a class="navbar-item" href="<{$xoops_url}>/viewpmsg.php" title="<{$block.lang_inbox}>" role="menuitem"><{$block.lang_inbox}> (<{$block.new_messages}>)</a>
         <{else}>
-        <a class="navbar-item" href="<{$xoops_url}>/viewpmsg.php" title="<{$block.lang_inbox}>"><{$block.lang_inbox}></a>
+            <a class="navbar-item" href="<{$xoops_url}>/viewpmsg.php" title="<{$block.lang_inbox}>" role="menuitem"><{$block.lang_inbox}></a>
         <{/if}>
-        <a class="navbar-item" href="<{$xoops_url}>/user.php?op=logout" title="<{$block.lang_logout}>"><{$block.lang_logout}></a>
+        <a class="navbar-item" href="<{$xoops_url}>/user.php?op=logout" title="<{$block.lang_logout}>" role="menuitem"><{$block.lang_logout}></a>
     </div>
 </div>
