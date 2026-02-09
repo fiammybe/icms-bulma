@@ -1,4 +1,5 @@
 <ul class="menu-list" role="tree"
+    x-data="{ openLevel2: null, openLevel3: null }"
     x-init="
         openLevel2 = '<{$openLevel2_default}>' || null;
         openLevel3 = '<{$openLevel3_default}>' || null;
